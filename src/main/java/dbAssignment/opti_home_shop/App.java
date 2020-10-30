@@ -1,13 +1,17 @@
 package dbAssignment.opti_home_shop;
 
-/**
- * Hello world!
- *
- */
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+       BankRepository b = new BankRepository();
+       b.reconnectToDatabase();
+       List l = b.findAll();
+       b.closeConnection();
+       
     }
 }

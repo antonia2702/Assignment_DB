@@ -8,6 +8,10 @@ import javax.persistence.Table;
 @Table(name="bank")
 public class Bank
 {
+	
+	public Bank() {
+		
+	}
 	@Id
 	@Column (name = "BANK_Id")
 	private int BANK_Id;

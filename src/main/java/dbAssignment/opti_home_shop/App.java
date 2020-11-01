@@ -1,8 +1,7 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.Iterator;
 import java.util.List;
-
-import javax.persistence.EntityManager;
 
 public class App 
 {
@@ -10,8 +9,11 @@ public class App
     {
        BankRepository b = new BankRepository();
        b.reconnectToDatabase();
-       List l = b.findAll();
+       List<Bank> l = b.findAll();
+       Iterator<Bank> i = l.iterator();
+       while(i.hasNext()) {
+    	   System.out.println(i.next().toString());
+       }
        b.closeConnection();
-       
     }
 }

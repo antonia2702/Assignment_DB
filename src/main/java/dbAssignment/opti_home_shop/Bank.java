@@ -1,5 +1,7 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -65,4 +67,28 @@ public class Bank
 		this.BANK_CreateDate = BANK_CreateDate_;
 		this.BANK_UpdateDate = BANK_UpdateDate_;
 	}
+	
+	@Override 
+	public String toString() {
+		return BANK_Name;
+	}
+	@Override
+    public boolean equals( Object o ) {
+        if ( this == o ) {
+            return true;
+        }
+
+        if ( o == null || getClass() != o.getClass() ) {
+            return false;
+        }
+
+        Bank bank = (Bank) o;
+        return Objects.equals( BANK_Id, bank.BANK_Id );
+    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash( BANK_Id, BANK_Name, BANK_CreateDate, BANK_UpdateDate);
+    }
 }

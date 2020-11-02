@@ -11,9 +11,7 @@ import javax.persistence.Table;
 public class Bank
 {
 	
-	public Bank() {
-		
-	}
+	
 	@Id
 	@Column (name = "BANK_Id")
 	private int BANK_Id;
@@ -66,6 +64,10 @@ public class Bank
 		this.BANK_Name = BANK_Name_;
 		this.BANK_CreateDate = BANK_CreateDate_;
 		this.BANK_UpdateDate = BANK_UpdateDate_;
+	}
+	
+	public Bank() {
+		
 	}
 	
 	@Override 

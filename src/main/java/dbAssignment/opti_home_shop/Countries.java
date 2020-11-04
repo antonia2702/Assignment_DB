@@ -1,10 +1,12 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -56,6 +58,32 @@ public class Countries
 		this.COUNTRY_UpdateDate = value;
 	}
 
+	@OneToMany(mappedBy = "COUNTRY")
+	private List<Billingadress> billingadresses;
+	public List<Billingadress> getBillingadresses() {
+		return billingadresses;
+	}
+	public void setBillingadresses(List<Billingadress> billingadresses) {
+		this.billingadresses = billingadresses;
+	}
+	
+	@OneToMany(mappedBy = "COUNTRY")
+	private List<Supplier> suppliers;
+	public List<Supplier> getSuppliers() {
+		return suppliers;
+	}
+	public void setSuppliers(List<Supplier> suppliers) {
+		this.suppliers = suppliers;
+	}
+	
+	@OneToMany(mappedBy = "COUNTRY")
+	private List<Deliveryadress> deliveryadresses;
+	public List<Deliveryadress> getDeliveryadresses() {
+		return deliveryadresses;
+	}
+	public void setDeliveryadresses(List<Deliveryadress> deliveryadresses) {
+		this.deliveryadresses = deliveryadresses;
+	}
 
 	public Countries(int COUNTRY_Id_,String COUNTRY_Name_,java.sql.Timestamp COUNTRY_CreateDate_,java.sql.Timestamp COUNTRY_UpdateDate_)
 	{

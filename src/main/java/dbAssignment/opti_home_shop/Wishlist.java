@@ -4,7 +4,10 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,26 +26,28 @@ public class Wishlist
 		this.W_Id = value;
 	}
 
-	@Column
-	private int CA_Id;
-	public int getCA_Id()
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="CA_Id")
+	private Customeraccount CA;
+	public Customeraccount getCA()
 	{
-		return this.CA_Id;
+		return this.CA;
 	}
-	public void setCA_Id(int value)
+	public void setCA(Customeraccount value)
 	{
-		this.CA_Id = value;
+		this.CA = value;
 	}
 
-	@Column
-	private int A_Id;
-	public int getA_Id()
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="A_Id")
+	private Article A;
+	public Article getA()
 	{
-		return this.A_Id;
+		return this.A;
 	}
-	public void setA_Id(int value)
+	public void setA(Article value)
 	{
-		this.A_Id = value;
+		this.A = value;
 	}
 
 	@Column
@@ -68,11 +73,11 @@ public class Wishlist
 	}
 
 
-	public Wishlist(int W_Id_,int CA_Id_,int A_Id_,java.sql.Timestamp W_CreateDate_,java.sql.Timestamp W_UpdateDate_)
+	public Wishlist(int W_Id_,Customeraccount CA_Id_,Article A_Id_,java.sql.Timestamp W_CreateDate_,java.sql.Timestamp W_UpdateDate_)
 	{
 		this.W_Id = W_Id_;
-		this.CA_Id = CA_Id_;
-		this.A_Id = A_Id_;
+		this.CA = CA_Id_;
+		this.A = A_Id_;
 		this.W_CreateDate = W_CreateDate_;
 		this.W_UpdateDate = W_UpdateDate_;
 	}

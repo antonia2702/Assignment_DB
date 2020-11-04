@@ -1,10 +1,15 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -67,26 +72,28 @@ public class Deliveryadress
 		this.DA_StreetNo = value;
 	}
 
-	@Column
-	private int PC_Id;
-	public int getPC_Id()
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="PC_Id")
+	private Postalcode PC;
+	public Postalcode getPC()
 	{
-		return this.PC_Id;
+		return this.PC;
 	}
-	public void setPC_Id(int value)
+	public void setPC(Postalcode value)
 	{
-		this.PC_Id = value;
+		this.PC = value;
 	}
 
-	@Column
-	private int COUNTRY_Id;
-	public int getCOUNTRY_Id()
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="COUNTRY_Id")
+	private Countries COUNTRY;
+	public Countries getCOUNTRY_Id()
 	{
-		return this.COUNTRY_Id;
+		return this.COUNTRY;
 	}
-	public void setCOUNTRY_Id(int value)
+	public void setCOUNTRY_Id(Countries value)
 	{
-		this.COUNTRY_Id = value;
+		this.COUNTRY = value;
 	}
 	
 	@Column
@@ -110,17 +117,19 @@ public class Deliveryadress
 	{
 		this.DA_UpdateDate = value;
 	}
+	
+	@OneToMany(mappedBy = "DA")
+	private List<Customeraccount> customeraccounts;
 
-
-	public Deliveryadress(int DA_Id_,String DA_FirstName_,String DA_LastName_,String DA_Street_,byte DA_StreetNo_,int PC_Id_,int COUNTRY_Id_,java.sql.Timestamp DA_CreateDate_,java.sql.Timestamp DA_UpdateDate_)
+	public Deliveryadress(int DA_Id_,String DA_FirstName_,String DA_LastName_,String DA_Street_,byte DA_StreetNo_,Postalcode PC_Id_,Countries COUNTRY_Id_,java.sql.Timestamp DA_CreateDate_,java.sql.Timestamp DA_UpdateDate_)
 	{
 		this.DA_Id = DA_Id_;
 		this.DA_FirstName = DA_FirstName_;
 		this.DA_LastName = DA_LastName_;
 		this.DA_Street = DA_Street_;
 		this.DA_StreetNo = DA_StreetNo_;
-		this.PC_Id = PC_Id_;
-		this.COUNTRY_Id = COUNTRY_Id_;
+		this.PC = PC_Id_;
+		this.COUNTRY = COUNTRY_Id_;
 		this.DA_CreateDate = DA_CreateDate_;
 		this.DA_UpdateDate = DA_UpdateDate_;
 	}

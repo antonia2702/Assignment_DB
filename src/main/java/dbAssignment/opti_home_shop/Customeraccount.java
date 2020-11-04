@@ -1,10 +1,15 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -45,48 +50,52 @@ public class Customeraccount
 		this.CA_Password = value;
 	}
 
-	@Column
-	private int R_Id;
-	public int getR_Id()
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="R_Id")
+	private Role R;
+	public Role getR()
 	{
-		return this.R_Id;
+		return this.R;
 	}
-	public void setR_Id(int value)
+	public void setR(Role value)
 	{
-		this.R_Id = value;
-	}
-
-	@Column
-	private int DA_Id;
-	public int getDA_Id()
-	{
-		return this.DA_Id;
-	}
-	public void setDA_Id(int value)
-	{
-		this.DA_Id = value;
+		this.R = value;
 	}
 
-	@Column
-	private int BA_Id;
-	public int getBA_Id()
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="DA_Id")
+	private Deliveryadress DA;
+	public Deliveryadress getDA()
 	{
-		return this.BA_Id;
+		return this.DA;
 	}
-	public void setBA_Id(int value)
+	public void setDA(Deliveryadress value)
 	{
-		this.BA_Id = value;
+		this.DA = value;
 	}
 
-	@Column
-	private int BD_Id;
-	public int getBD_Id()
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="BA_Id")
+	private Billingadress BA;
+	public Billingadress getBA()
 	{
-		return this.BD_Id;
+		return this.BA;
 	}
-	public void setBD_Id(int value)
+	public void setBA(Billingadress value)
 	{
-		this.BD_Id = value;
+		this.BA = value;
+	}
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="BD_Id")
+	private Bankdetails BD;
+	public Bankdetails getBD()
+	{
+		return this.BD;
+	}
+	public void setBD(Bankdetails value)
+	{
+		this.BD = value;
 	}
 
 	@Column
@@ -110,17 +119,43 @@ public class Customeraccount
 	{
 		this.CA_UpdateDate = value;
 	}
-
-
-	public Customeraccount(int CA_Id_,String CA_UserName_,String CA_Password_,int R_Id_,int DA_Id_,int BA_Id_,int BD_Id_,java.sql.Timestamp CA_CreateDate_,java.sql.Timestamp CA_UpdateDate_)
+	
+	@OneToMany(mappedBy = "AR")
+	private List<Articlerating> articleratings;
+	public List<Articlerating> getArticleratings() {
+		return articleratings;
+	}
+	public void setArticleratings(List<Articlerating> articleratings) {
+		this.articleratings = articleratings;
+	}
+	
+	@OneToMany(mappedBy = "CA")
+	private List<Wishlist> wishlists;
+	public List<Wishlist> getWishlists() {
+		return wishlists;
+	}
+	public void setWishlists(List<Wishlist> wishlists) {
+		this.wishlists = wishlists;
+	}
+	
+	@OneToMany(mappedBy = "CART")
+	private List<Cart> carts;
+	public List<Cart> getCarts() {
+		return carts;
+	}
+	public void setCarts(List<Cart> carts) {
+		this.carts = carts;
+	}
+	
+	public Customeraccount(int CA_Id_,String CA_UserName_,String CA_Password_,Role R_Id_,Deliveryadress DA_Id_,Billingadress BA_Id_,Bankdetails BD_Id_,java.sql.Timestamp CA_CreateDate_,java.sql.Timestamp CA_UpdateDate_)
 	{
 		this.CA_Id = CA_Id_;
 		this.CA_UserName = CA_UserName_;
 		this.CA_Password = CA_Password_;
-		this.R_Id = R_Id_;
-		this.DA_Id = DA_Id_;
-		this.BA_Id = BA_Id_;
-		this.BD_Id = BD_Id_;
+		this.R = R_Id_;
+		this.DA = DA_Id_;
+		this.BA = BA_Id_;
+		this.BD = BD_Id_;
 		this.CA_CreateDate = CA_CreateDate_;
 		this.CA_UpdateDate = CA_UpdateDate_;
 	}

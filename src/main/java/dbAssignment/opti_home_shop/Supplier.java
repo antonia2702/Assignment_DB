@@ -1,10 +1,15 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -67,48 +72,52 @@ public class Supplier
 		this.SUP_StreetNo = value;
 	}
 
-	@Column
-	private int PC_Id;
-	public int getPC_Id()
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="PC_Id")
+	private Postalcode PC;
+	public Postalcode getPC()
 	{
-		return this.PC_Id;
+		return this.PC;
 	}
-	public void setPC_Id(int value)
+	public void setPC(Postalcode value)
 	{
-		this.PC_Id = value;
-	}
-
-	@Column
-	private int COUNTRY_Id;
-	public int getCOUNTRY_Id()
-	{
-		return this.COUNTRY_Id;
-	}
-	public void setCOUNTRY_Id(int value)
-	{
-		this.COUNTRY_Id = value;
+		this.PC = value;
 	}
 
-	@Column
-	private int BANK_Id;
-	public int getBANK_Id()
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="COUNTRY_Id")
+	private Countries COUNTRY;
+	public Countries getCOUNTRY()
 	{
-		return this.BANK_Id;
+		return this.COUNTRY;
 	}
-	public void setBANK_Id(int value)
+	public void setCOUNTRY(Countries value)
 	{
-		this.BANK_Id = value;
+		this.COUNTRY = value;
 	}
 
-	@Column
-	private int BD_Id;
-	public int getBD_Id()
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="BANK_Id")
+	private Bank BANK;
+	public Bank getBANK()
 	{
-		return this.BD_Id;
+		return this.BANK;
 	}
-	public void setBD_Id(int value)
+	public void setBANK(Bank value)
 	{
-		this.BD_Id = value;
+		this.BANK = value;
+	}
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="BD_Id")
+	private Bankdetails BD;
+	public Bankdetails getBD()
+	{
+		return this.BD;
+	}
+	public void setBD(Bankdetails value)
+	{
+		this.BD = value;
 	}
 
 	@Column
@@ -132,19 +141,26 @@ public class Supplier
 	{
 		this.SUP_UpdateDate = value;
 	}
-
-
-	public Supplier(int SUP_Id_,String SUP_Name_,String SUP_LegalForm_,String SUP_Street_,byte SUP_StreetNo_,int PC_Id_,int COUNTRY_Id_,int BANK_Id_,int BD_Id_,java.sql.Timestamp SUP_CreateDate_,java.sql.Timestamp SUP_UpdateDate_)
+	
+	@OneToMany(mappedBy = "SUP")
+	private List<Article> articles;
+	public List<Article> getArticles() {
+		return articles;
+	}
+	public void setArticles(List<Article> articles) {
+		this.articles = articles;
+	}
+	public Supplier(int SUP_Id_,String SUP_Name_,String SUP_LegalForm_,String SUP_Street_,byte SUP_StreetNo_,Postalcode PC_Id_,Countries COUNTRY_Id_,Bank BANK_Id_,Bankdetails BD_Id_,java.sql.Timestamp SUP_CreateDate_,java.sql.Timestamp SUP_UpdateDate_)
 	{
 		this.SUP_Id = SUP_Id_;
 		this.SUP_Name = SUP_Name_;
 		this.SUP_LegalForm = SUP_LegalForm_;
 		this.SUP_Street = SUP_Street_;
 		this.SUP_StreetNo = SUP_StreetNo_;
-		this.PC_Id = PC_Id_;
-		this.COUNTRY_Id = COUNTRY_Id_;
-		this.BANK_Id = BANK_Id_;
-		this.BD_Id = BD_Id_;
+		this.PC = PC_Id_;
+		this.COUNTRY = COUNTRY_Id_;
+		this.BANK = BANK_Id_;
+		this.BD = BD_Id_;
 		this.SUP_CreateDate = SUP_CreateDate_;
 		this.SUP_UpdateDate = SUP_UpdateDate_;
 	}

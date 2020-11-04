@@ -1,10 +1,12 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -67,7 +69,33 @@ public class Postalcode
 		this.PC_UpdateDate = value;
 	}
 
+	@OneToMany(mappedBy = "PC")
+	private List<Billingadress> billingadresses;
+	public List<Billingadress> getBillingadresses() {
+		return billingadresses;
+	}
+	public void setBillingadresses(List<Billingadress> billingadresses) {
+		this.billingadresses = billingadresses;
+	}
 
+	@OneToMany(mappedBy = "PC")
+	private List<Deliveryadress> deliveryadresses;
+	public List<Deliveryadress> getDeliveryadresses() {
+		return deliveryadresses;
+	}
+	public void setDeliveryadresses(List<Deliveryadress> deliveryadresses) {
+		this.deliveryadresses = deliveryadresses;
+	}
+	
+	@OneToMany(mappedBy = "PC")
+	private List<Supplier> suppliers;
+	public List<Supplier> getSuppliers() {
+		return suppliers;
+	}
+	public void setSuppliers(List<Supplier> suppliers) {
+		this.suppliers = suppliers;
+	}
+	
 	public Postalcode(int PC_Id_,String PC_Place_,String PC_State_,java.sql.Timestamp PC_CreateDate_,java.sql.Timestamp PC_UpdateDate_)
 	{
 		this.PC_Id = PC_Id_;

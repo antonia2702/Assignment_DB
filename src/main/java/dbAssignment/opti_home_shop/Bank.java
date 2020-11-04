@@ -1,9 +1,11 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @javax.persistence.Entity
@@ -56,8 +58,25 @@ public class Bank
 	{
 		this.BANK_UpdateDate = value;
 	}
-
-
+	
+	@OneToMany(mappedBy = "BANK")
+	private List<Bankdetails> bankdetails;
+	public List<Bankdetails> getBankdetails() {
+		return bankdetails;
+	}
+	public void setBankdetails(List<Bankdetails> bankdetails) {
+		this.bankdetails = bankdetails;
+	}
+	
+	@OneToMany(mappedBy = "BANK")
+	private List<Supplier> suppliers;
+	public List<Supplier> getSuppliers() {
+		return suppliers;
+	}
+	public void setSuppliers(List<Supplier> suppliers) {
+		this.suppliers = suppliers;
+	}
+	
 	public Bank(int BANK_Id_,String BANK_Name_,java.sql.Timestamp BANK_CreateDate_,java.sql.Timestamp BANK_UpdateDate_)
 	{
 		this.BANK_Id = BANK_Id_;

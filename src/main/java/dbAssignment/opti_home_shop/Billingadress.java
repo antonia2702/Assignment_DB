@@ -1,10 +1,15 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -67,26 +72,28 @@ public class Billingadress
 		this.BA_StreetNo = value;
 	}
 
-	@Column
-	private int PC_Id;
-	public int getPC_Id()
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="PC_Id")
+	private Postalcode PC;
+	public Postalcode getPC()
 	{
-		return this.PC_Id;
+		return this.PC;
 	}
-	public void setPC_Id(int value)
+	public void setPC(Postalcode value)
 	{
-		this.PC_Id = value;
+		this.PC = value;
 	}
 
-	@Column
-	private int COUNTRY_Id;
-	public int getCOUNTRY_Id()
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="COUNTRY_Id")
+	private Countries COUNTRY;
+	public Countries getCOUNTRY()
 	{
-		return this.COUNTRY_Id;
+		return this.COUNTRY;
 	}
-	public void setCOUNTRY_Id(int value)
+	public void setCOUNTRY(Countries value)
 	{
-		this.COUNTRY_Id = value;
+		this.COUNTRY = value;
 	}
 
 	@Column
@@ -111,16 +118,24 @@ public class Billingadress
 		this.BA_UpdateDate = value;
 	}
 
+	@OneToMany(mappedBy = "BA")
+	private List<Customeraccount> customeraccounts;
+	public List<Customeraccount> getCustomeraccounts() {
+		return customeraccounts;
+	}
+	public void setCustomeraccounts(List<Customeraccount> customeraccounts) {
+		this.customeraccounts = customeraccounts;
+	}
 
-	public Billingadress(int BA_Id_,String BA_FirstName_,String BA_LastName_,String BA_Street_,String BA_StreetNo_,int PC_Id_,int COUNTRY_Id_,java.sql.Timestamp BA_CreateDate_,java.sql.Timestamp BA_UpdateDate_)
+	public Billingadress(int BA_Id_,String BA_FirstName_,String BA_LastName_,String BA_Street_,String BA_StreetNo_,Postalcode PC_Id_,Countries COUNTRY_Id_,java.sql.Timestamp BA_CreateDate_,java.sql.Timestamp BA_UpdateDate_)
 	{
 		this.BA_Id = BA_Id_;
 		this.BA_FirstName = BA_FirstName_;
 		this.BA_LastName = BA_LastName_;
 		this.BA_Street = BA_Street_;
 		this.BA_StreetNo = BA_StreetNo_;
-		this.PC_Id = PC_Id_;
-		this.COUNTRY_Id = COUNTRY_Id_;
+		this.PC = PC_Id_;
+		this.COUNTRY = COUNTRY_Id_;
 		this.BA_CreateDate = BA_CreateDate_;
 		this.BA_UpdateDate = BA_UpdateDate_;
 	}

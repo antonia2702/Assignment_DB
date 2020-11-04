@@ -1,10 +1,12 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -55,7 +57,15 @@ public class Role
 	{
 		this.R_UpdateDate = value;
 	}
-
+	
+	@OneToMany(mappedBy = "R")
+	private List<Customeraccount> customeraccounts;
+	public List<Customeraccount> getCustomeraccounts() {
+		return customeraccounts;
+	}
+	public void setCustomeraccounts(List<Customeraccount> customeraccounts) {
+		this.customeraccounts = customeraccounts;
+	}
 
 	public Role(int R_Id_,String R_Group_,java.sql.Timestamp R_CreateDate_,java.sql.Timestamp R_UpdateDate_)
 	{

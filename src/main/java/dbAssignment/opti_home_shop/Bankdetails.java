@@ -1,5 +1,6 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.*;
@@ -20,15 +21,16 @@ public class Bankdetails
 		this.BD_Id = value;
 	}
 	
-	@Column
-	private int BANK_Id;
-	public int getBANK_Id()
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="BANK_Id")
+	private Bank BANK;
+	public Bank getBANK()
 	{
-		return this.BANK_Id;
+		return this.BANK;
 	}
-	public void setBANK_Id(int value)
+	public void setBANK(Bank value)
 	{
-		this.BANK_Id = value;
+		this.BANK = value;
 	}
 	
 	@Column
@@ -108,11 +110,28 @@ public class Bankdetails
 		this.BD_UpdateDate = value;
 	}
 
-
-	public Bankdetails(int BD_Id_,int BANK_Id_,String BD_CartholderFirstName_,String BD_CartholderLastName_,String BD_Bic_,String BD_Iban_,java.sql.Date BD_CartValidDate_,java.sql.Timestamp BD_CreateDate_,java.sql.Timestamp BD_UpdateDate_)
+	@OneToMany(mappedBy = "BD")
+	private List<Supplier> suppliers;
+	public List<Supplier> getSuppliers() {
+		return suppliers;
+	}
+	public void setSuppliers(List<Supplier> suppliers) {
+		this.suppliers = suppliers;
+	}
+	
+	@OneToMany(mappedBy = "BD")
+	private List<Customeraccount> customeraccounts;
+	public List<Customeraccount> getCustomeraccounts() {
+		return customeraccounts;
+	}
+	public void setCustomeraccounts(List<Customeraccount> customeraccounts) {
+		this.customeraccounts = customeraccounts;
+	}
+	
+	public Bankdetails(int BD_Id_,Bank BANK_Id_,String BD_CartholderFirstName_,String BD_CartholderLastName_,String BD_Bic_,String BD_Iban_,java.sql.Date BD_CartValidDate_,java.sql.Timestamp BD_CreateDate_,java.sql.Timestamp BD_UpdateDate_)
 	{
 		this.BD_Id = BD_Id_;
-		this.BANK_Id = BANK_Id_;
+		this.BANK = BANK_Id_;
 		this.BD_CartholderFirstName = BD_CartholderFirstName_;
 		this.BD_CartholderLastName = BD_CartholderLastName_;
 		this.BD_Bic = BD_Bic_;
@@ -147,6 +166,6 @@ public class Bankdetails
 
     @Override
     public int hashCode() {
-        return Objects.hash(BD_Id, BANK_Id, BD_CartholderFirstName, BD_CartholderLastName, BD_Bic, BD_Iban, BD_CartValidDate, BD_CreateDate, BD_UpdateDate);
+        return Objects.hash(BD_Id, BANK, BD_CartholderFirstName, BD_CartholderLastName, BD_Bic, BD_Iban, BD_CartValidDate, BD_CreateDate, BD_UpdateDate);
     }
 }

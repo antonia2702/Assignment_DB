@@ -1,7 +1,12 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @javax.persistence.Entity
@@ -52,10 +57,62 @@ public class OrderTable {
 		this.O_CreateDate = value;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="CART_Id")
+	private Cart cart;
+	
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="SHIP_Id")
+	private Shipping shipping;
+
+	public Shipping getShipping() {
+		return shipping;
+	}
+
+	public void setShipping(Shipping shipping) {
+		this.shipping = shipping;
+	}
+
 	public OrderTable(int OT_Id_, int CART_Id_, int SHIP_Id_, java.sql.Timestamp O_CreateDate_) {
 		this.OT_Id = OT_Id_;
 		this.CART_Id = CART_Id_;
 		this.SHIP_Id = SHIP_Id_;
 		this.O_CreateDate = O_CreateDate_;
+	}
+	
+	public OrderTable() {
+		
+	}
+	
+	@Override
+	public String toString() {
+		return "" + OT_Id;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		OrderTable orderTable = (OrderTable) o;
+		return Objects.equals(OT_Id, orderTable.OT_Id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(OT_Id);
 	}
 }

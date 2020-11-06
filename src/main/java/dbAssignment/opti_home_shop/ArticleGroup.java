@@ -1,7 +1,11 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.List;
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @javax.persistence.Entity
@@ -52,6 +56,17 @@ public class ArticleGroup {
 	public void setAG_UpdateDate(java.sql.Timestamp value) {
 		this.AG_UpdateDate = value;
 	}
+	
+	@OneToMany(mappedBy = "articlegroup")
+	private List<Article> articles;
+
+	public List<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(List<Article> articles) {
+		this.articles = articles;
+	}
 
 	public ArticleGroup(int AG_Id_, String AG_Description_, java.sql.Timestamp AG_CreateDate_,
 			java.sql.Timestamp AG_UpdateDate_) {
@@ -60,4 +75,34 @@ public class ArticleGroup {
 		this.AG_CreateDate = AG_CreateDate_;
 		this.AG_UpdateDate = AG_UpdateDate_;
 	}
+	
+	public ArticleGroup() {
+	}
+
+	@Override
+	public String toString() {
+		return AG_Description;
+	}
+
+	@Override
+    public boolean equals( Object o ) {
+        if ( this == o ) {
+            return true;
+        }
+
+        if ( o == null || getClass() != o.getClass() ) {
+            return false;
+        }
+
+        ArticleGroup articleGroup = (ArticleGroup) o;
+        return Objects.equals( AG_Id, articleGroup.AG_Id );
+    }
+
+
+    @Override
+    public int hashCode() {
+		return Objects.hash(AG_Id, AG_Description, AG_CreateDate, AG_UpdateDate);
+	}
+
+	
 }

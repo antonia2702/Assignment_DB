@@ -1,7 +1,11 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.List;
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @javax.persistence.Entity
@@ -53,11 +57,49 @@ public class ArticleInventory {
 		this.AI_UpdateDate = value;
 	}
 
+	@OneToMany(mappedBy = "articleinventory")
+	private List<Article> articles;
+
+	public List<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(List<Article> articles) {
+		this.articles = articles;
+	}
+
 	public ArticleInventory(int AI_Id_, int AI_Quantity_, java.sql.Timestamp AI_CreateDate_,
 			java.sql.Timestamp AI_UpdateDate_) {
 		this.AI_Id = AI_Id_;
 		this.AI_Quantity = AI_Quantity_;
 		this.AI_CreateDate = AI_CreateDate_;
 		this.AI_UpdateDate = AI_UpdateDate_;
+	}
+
+	public ArticleInventory() {
+	}
+
+	@Override
+	public String toString() {
+		return "" + getAI_Quantity();
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		ArticleInventory articleInventory = (ArticleInventory) o;
+		return Objects.equals(AI_Id, articleInventory.AI_Id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(AI_Id, AI_Quantity, AI_CreateDate, AI_UpdateDate);
 	}
 }

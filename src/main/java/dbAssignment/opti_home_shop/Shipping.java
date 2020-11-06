@@ -1,7 +1,11 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.List;
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @javax.persistence.Entity
@@ -51,6 +55,17 @@ public class Shipping {
 	public void setSHIP_UpdateDate(java.sql.Timestamp value) {
 		this.SHIP_UpdateDate = value;
 	}
+	
+	@OneToMany(mappedBy = "shipping")
+	private List<OrderTable> orderTables;
+
+	public List<OrderTable> getOrderTables() {
+		return orderTables;
+	}
+
+	public void setOrderTables(List<OrderTable> orderTables) {
+		this.orderTables = orderTables;
+	}
 
 	public Shipping(int SHIP_Id_, float SHIP_Costs_, java.sql.Timestamp SHIP_CreateDate_,
 			java.sql.Timestamp SHIP_UpdateDate_) {
@@ -58,5 +73,33 @@ public class Shipping {
 		this.SHIP_Costs = SHIP_Costs_;
 		this.SHIP_CreateDate = SHIP_CreateDate_;
 		this.SHIP_UpdateDate = SHIP_UpdateDate_;
+	}
+	
+	public Shipping() {
+		
+	}
+	
+	@Override
+	public String toString() {
+		return "" + SHIP_Costs;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		Shipping shipping = (Shipping) o;
+		return Objects.equals(SHIP_Id, shipping.SHIP_Id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(SHIP_Id, SHIP_Costs, SHIP_CreateDate, SHIP_UpdateDate);
 	}
 }

@@ -1,7 +1,11 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @javax.persistence.Entity
@@ -84,6 +88,28 @@ public class ArticleRating {
 	public void setAR_UpdateDate(java.sql.Timestamp value) {
 		this.AR_UpdateDate = value;
 	}
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Article article;
+
+	public Article getArticle() {
+		return article;
+	}
+
+	public void setArticle(Article article) {
+		this.article = article;
+	}
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Customeraccount customeraccount;
+	
+	public Customeraccount getCustomeraccount() {
+		return customeraccount;
+	}
+
+	public void setCustomeraccount(Customeraccount customeraccount) {
+		this.customeraccount = customeraccount;
+	}
 
 	public ArticleRating(int AR_Id_, int CA_Id_, int A_Id_, String AR_Describtion_, byte AR_Rating_,
 			java.sql.Timestamp AR_CreateDate_, java.sql.Timestamp AR_UpdateDate_) {
@@ -94,5 +120,33 @@ public class ArticleRating {
 		this.AR_Rating = AR_Rating_;
 		this.AR_CreateDate = AR_CreateDate_;
 		this.AR_UpdateDate = AR_UpdateDate_;
+	}
+
+	public ArticleRating() {
+
+	}
+
+	@Override
+	public String toString() {
+		return "" + AR_Rating + ", " + AR_Describtion;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		ArticleRating articleRating = (ArticleRating) o;
+		return Objects.equals(AR_Id, articleRating.AR_Id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(AR_Id, AR_Describtion, AR_Rating, AR_CreateDate);
 	}
 }

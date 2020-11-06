@@ -1,7 +1,11 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.List;
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @javax.persistence.Entity
@@ -62,6 +66,17 @@ public class DangerousGoods {
 	public void setDG_UpdateDate(java.sql.Timestamp value) {
 		this.DG_UpdateDate = value;
 	}
+	
+	@OneToMany(mappedBy = "dangerousgoods")
+	private List <Article> articles;
+
+	public List<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(List<Article> articles) {
+		this.articles = articles;
+	}
 
 	public DangerousGoods(int DG_Id_, String DG_Code_, String DG_Description_, java.sql.Timestamp DG_CreateDate_,
 			java.sql.Timestamp DG_UpdateDate_) {
@@ -70,5 +85,33 @@ public class DangerousGoods {
 		this.DG_Description = DG_Description_;
 		this.DG_CreateDate = DG_CreateDate_;
 		this.DG_UpdateDate = DG_UpdateDate_;
+	}
+	
+	public DangerousGoods() {
+		
+	}
+	
+	@Override
+	public String toString() {
+		return DG_Code + ", " + DG_Description;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		DangerousGoods dangerousGood = (DangerousGoods) o;
+		return Objects.equals(DG_Id, dangerousGood.DG_Id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(DG_Id, DG_Code, DG_Description, DG_CreateDate);
 	}
 }

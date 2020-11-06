@@ -1,7 +1,11 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.List;
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @javax.persistence.Entity
@@ -63,6 +67,17 @@ public class CustomTariffNumbers {
 		this.CTN_UpdateDate = value;
 	}
 
+	@OneToMany(mappedBy = "customtariffnumbers")
+	private List<Article> article;
+
+	public List<Article> getArticle() {
+		return article;
+	}
+
+	public void setArticle(List<Article> article) {
+		this.article = article;
+	}
+
 	public CustomTariffNumbers(int CTN_Id_, String CTN_Code_, String CTN_Description_,
 			java.sql.Timestamp CTN_CreateDate_, java.sql.Timestamp CTN_UpdateDate_) {
 		this.CTN_Id = CTN_Id_;
@@ -70,5 +85,33 @@ public class CustomTariffNumbers {
 		this.CTN_Description = CTN_Description_;
 		this.CTN_CreateDate = CTN_CreateDate_;
 		this.CTN_UpdateDate = CTN_UpdateDate_;
+	}
+
+	public CustomTariffNumbers() {
+
+	}
+	
+	@Override
+	public String toString() {
+		return CTN_Code;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		CustomTariffNumbers customTariffNumbers = (CustomTariffNumbers) o;
+		return Objects.equals(CTN_Id, customTariffNumbers.CTN_Id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(CTN_Id, CTN_Code, CTN_Description, CTN_CreateDate);
 	}
 }

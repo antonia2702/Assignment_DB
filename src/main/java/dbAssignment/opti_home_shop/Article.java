@@ -1,7 +1,14 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.List;
+import java.util.Objects;
+
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @javax.persistence.Entity
@@ -195,6 +202,110 @@ public class Article {
 		this.A_UpdateDate = value;
 	}
 
+	@OneToMany(mappedBy = "article")
+	private List<ArticleRating> articleRatings;
+
+	public List<ArticleRating> getArticleRatings() {
+		return articleRatings;
+	}
+
+	public void setArticleRatings(List<ArticleRating> articleRating) {
+		this.articleRatings = articleRating;
+	}
+
+	@OneToMany(mappedBy = "article")
+	private List<Wishlist> wishlists;
+
+	public List<Wishlist> getWishlists() {
+		return wishlists;
+	}
+
+	public void setWishlists(List<Wishlist> wishlists) {
+		this.wishlists = wishlists;
+	}
+
+	@OneToMany(mappedBy = "article")
+	private List<Cart> carts;
+
+	public List<Cart> getCarts() {
+		return carts;
+	}
+
+	public void setCarts(List<Cart> carts) {
+		this.carts = carts;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "DG_Id")
+	private DangerousGoods dangerousGood;
+
+	public DangerousGoods getDangerousGood() {
+		return dangerousGood;
+	}
+
+	public void setDangerousGood(DangerousGoods dangerousGood) {
+		this.dangerousGood = dangerousGood;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "SUP_Id")
+	private Supplier supplier;
+
+	public Supplier getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "AI_Id")
+	private ArticleInventory articleInventory;
+
+	public ArticleInventory getArticleInventory() {
+		return articleInventory;
+	}
+
+	public void setArticleInventory(ArticleInventory articleInventory) {
+		this.articleInventory = articleInventory;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "AG_Id")
+	private ArticleGroup articleGroup;
+
+	public ArticleGroup getArticleGroup() {
+		return articleGroup;
+	}
+
+	public void setArticleGroup(ArticleGroup articleGroup) {
+		this.articleGroup = articleGroup;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CTN_Id")
+	private CustomTariffNumbers customTariffNumber;
+
+	public CustomTariffNumbers getCustomTariffNumber() {
+		return customTariffNumber;
+	}
+
+	public void setCustomTariffNumber(CustomTariffNumbers customTariffNumber) {
+		this.customTariffNumber = customTariffNumber;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "STOR_Id")
+	private Storage storage;
+
+	public Storage getStorage() {
+		return storage;
+	}
+
+	public void setStorage(Storage storage) {
+		this.storage = storage;
+	}
 
 	public Article(int A_Id_, String A_ArticleNo_, String A_ManufacturerArtNo_, byte A_Active_, String A_Name_,
 			String A_Description_, String A_DeliveryTime_, float A_PurchasingPrice_, float A_SellingPrice_, int AI_Id_,
@@ -217,5 +328,32 @@ public class Article {
 		this.CTN_Id = CTN_Id_;
 		this.A_CreateDate = A_CreateDate_;
 		this.A_UpdateDate = A_UpdateDate_;
+	}
+
+	public Article() {
+	}
+
+	@Override
+	public String toString() {
+		return A_Name;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		Article article = (Article) o;
+		return Objects.equals(A_Id, article.A_Id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(A_Id, A_Name, A_CreateDate, A_UpdateDate);
 	}
 }

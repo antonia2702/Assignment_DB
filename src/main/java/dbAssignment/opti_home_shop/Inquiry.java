@@ -1,7 +1,12 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @javax.persistence.Entity
@@ -52,10 +57,50 @@ public class Inquiry {
 		this.I_CreateDate = value;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CART_Id")
+	private Cart cart;
+	
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
 	public Inquiry(int I_Id_, int CART_Id_, String I_Description_, java.sql.Timestamp I_CreateDate_) {
 		this.I_Id = I_Id_;
 		this.CART_Id = CART_Id_;
 		this.I_Description = I_Description_;
 		this.I_CreateDate = I_CreateDate_;
+	}
+	
+	public Inquiry() {
+		
+	}
+	
+	@Override
+	public String toString() {
+		return I_Description;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		Inquiry inquiry = (Inquiry) o;
+		return Objects.equals(I_Id, inquiry.I_Id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(I_Id, I_Description, I_CreateDate);
 	}
 }

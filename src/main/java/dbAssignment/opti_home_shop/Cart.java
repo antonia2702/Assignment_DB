@@ -1,7 +1,14 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.List;
+import java.util.Objects;
+
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @javax.persistence.Entity
@@ -74,6 +81,52 @@ public class Cart {
 		this.CART_UpdateDate = value;
 	}
 
+	@OneToMany(mappedBy = "cart")
+	private List<OrderTable> ordertables;
+
+	public List<OrderTable> getOrdertables() {
+		return ordertables;
+	}
+
+	public void setOrdertables(List<OrderTable> ordertables) {
+		this.ordertables = ordertables;
+	}
+
+	@OneToMany(mappedBy = "cart")
+	private List<Inquiry> inquiries;
+
+	public List<Inquiry> getInquiries() {
+		return inquiries;
+	}
+
+	public void setInquiries(List<Inquiry> inquiries) {
+		this.inquiries = inquiries;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "A_Id")
+	private Article article;
+
+	public Article getArticle() {
+		return article;
+	}
+
+	public void setArticle(Article article) {
+		this.article = article;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CA_Id")
+	private Customeraccount customeraccount;
+
+	public Customeraccount getCustomeraccount() {
+		return customeraccount;
+	}
+
+	public void setCustomeraccount(Customeraccount customeraccount) {
+		this.customeraccount = customeraccount;
+	}
+
 	public Cart(int CART_Id_, int CA_Id_, int A_Id_, int CART_Quantity_, java.sql.Timestamp CART_CreateDate_,
 			java.sql.Timestamp CART_UpdateDate_) {
 		this.CART_Id = CART_Id_;
@@ -82,5 +135,32 @@ public class Cart {
 		this.CART_Quantity = CART_Quantity_;
 		this.CART_CreateDate = CART_CreateDate_;
 		this.CART_UpdateDate = CART_UpdateDate_;
+	}
+
+	public Cart() {
+	}
+
+	@Override
+	public String toString() {
+		return "" + CART_Quantity;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		Cart cart = (Cart) o;
+		return Objects.equals(CART_Id, cart.CART_Id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(CART_Id, CART_Quantity, CART_CreateDate, CART_UpdateDate);
 	}
 }

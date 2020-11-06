@@ -1,7 +1,11 @@
 package dbAssignment.opti_home_shop;
 
+import java.util.List;
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @javax.persistence.Entity
@@ -62,6 +66,17 @@ public class Storage {
 	public void setSTOR_UpdateDate(java.sql.Timestamp value) {
 		this.STOR_UpdateDate = value;
 	}
+	
+	@OneToMany(mappedBy = "storage")
+	private List<Article> articles;
+	
+	public List<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(List<Article> articles) {
+		this.articles = articles;
+	}
 
 	public Storage(int STOR_Id_, String STOR_No_, short STOR_Type_, java.sql.Timestamp STOR_CreateDate_,
 			java.sql.Timestamp STOR_UpdateDate_) {
@@ -70,5 +85,33 @@ public class Storage {
 		this.STOR_Type = STOR_Type_;
 		this.STOR_CreateDate = STOR_CreateDate_;
 		this.STOR_UpdateDate = STOR_UpdateDate_;
+	}
+	
+	public Storage() {
+		
+	}
+	
+	@Override
+	public String toString() {
+		return STOR_No;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		Storage storage = (Storage) o;
+		return Objects.equals(STOR_Id, storage.STOR_Id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(STOR_Id, STOR_No, STOR_CreateDate, STOR_UpdateDate);
 	}
 }

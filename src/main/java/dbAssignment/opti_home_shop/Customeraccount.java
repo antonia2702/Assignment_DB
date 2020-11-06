@@ -121,11 +121,11 @@ public class Customeraccount
 	}
 	
 	@OneToMany(mappedBy = "AR")
-	private List<Articlerating> articleratings;
-	public List<Articlerating> getArticleratings() {
+	private List<ArticleRating> articleratings;
+	public List<ArticleRating> getArticleratings() {
 		return articleratings;
 	}
-	public void setArticleratings(List<Articlerating> articleratings) {
+	public void setArticleratings(List<ArticleRating> articleratings) {
 		this.articleratings = articleratings;
 	}
 	

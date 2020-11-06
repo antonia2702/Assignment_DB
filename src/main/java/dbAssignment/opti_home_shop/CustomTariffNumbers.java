@@ -67,7 +67,7 @@ public class CustomTariffNumbers {
 		this.CTN_UpdateDate = value;
 	}
 
-	@OneToMany(mappedBy = "customtariffnumbers")
+	@OneToMany(mappedBy = "customTariffNumber")
 	private List<Article> article;
 
 	public List<Article> getArticle() {

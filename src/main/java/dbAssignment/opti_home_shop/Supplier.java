@@ -142,7 +142,7 @@ public class Supplier
 		this.SUP_UpdateDate = value;
 	}
 	
-	@OneToMany(mappedBy = "SUP")
+	@OneToMany(mappedBy = "supplier")
 	private List<Article> articles;
 	public List<Article> getArticles() {
 		return articles;

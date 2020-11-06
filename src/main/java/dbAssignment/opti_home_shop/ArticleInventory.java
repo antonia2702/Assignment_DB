@@ -57,7 +57,7 @@ public class ArticleInventory {
 		this.AI_UpdateDate = value;
 	}
 
-	@OneToMany(mappedBy = "articleinventory")
+	@OneToMany(mappedBy = "articleInventory")
 	private List<Article> articles;
 
 	public List<Article> getArticles() {

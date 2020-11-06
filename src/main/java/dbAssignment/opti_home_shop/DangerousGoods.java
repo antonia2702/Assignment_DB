@@ -67,7 +67,7 @@ public class DangerousGoods {
 		this.DG_UpdateDate = value;
 	}
 	
-	@OneToMany(mappedBy = "dangerousgoods")
+	@OneToMany(mappedBy = "dangerousGood")
 	private List <Article> articles;
 
 	public List<Article> getArticles() {

@@ -120,7 +120,7 @@ public class Customeraccount
 		this.CA_UpdateDate = value;
 	}
 	
-	@OneToMany(mappedBy = "AR")
+	@OneToMany(mappedBy = "customeraccount")
 	private List<ArticleRating> articleratings;
 	public List<ArticleRating> getArticleratings() {
 		return articleratings;

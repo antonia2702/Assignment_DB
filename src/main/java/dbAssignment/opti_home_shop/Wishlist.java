@@ -40,14 +40,14 @@ public class Wishlist
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="A_Id")
-	private Article A;
-	public Article getA()
+	private Article article;
+	public Article getArticle()
 	{
-		return this.A;
+		return this.article;
 	}
-	public void setA(Article value)
+	public void setArticle(Article value)
 	{
-		this.A = value;
+		this.article = value;
 	}
 
 	@Column
@@ -77,7 +77,7 @@ public class Wishlist
 	{
 		this.W_Id = W_Id_;
 		this.CA = CA_Id_;
-		this.A = A_Id_;
+		this.article = A_Id_;
 		this.W_CreateDate = W_CreateDate_;
 		this.W_UpdateDate = W_UpdateDate_;
 	}

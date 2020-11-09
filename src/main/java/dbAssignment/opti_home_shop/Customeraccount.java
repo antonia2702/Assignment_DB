@@ -129,7 +129,7 @@ public class Customeraccount
 		this.articleratings = articleratings;
 	}
 	
-	@OneToMany(mappedBy = "CA")
+	@OneToMany(mappedBy = "customeraccount")
 	private List<Wishlist> wishlists;
 	public List<Wishlist> getWishlists() {
 		return wishlists;
@@ -138,7 +138,7 @@ public class Customeraccount
 		this.wishlists = wishlists;
 	}
 	
-	@OneToMany(mappedBy = "CART")
+	@OneToMany(mappedBy = "customeraccount")
 	private List<Cart> carts;
 	public List<Cart> getCarts() {
 		return carts;

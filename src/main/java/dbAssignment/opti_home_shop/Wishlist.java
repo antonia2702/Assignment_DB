@@ -28,14 +28,14 @@ public class Wishlist
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="CA_Id")
-	private Customeraccount CA;
+	private Customeraccount customeraccount;
 	public Customeraccount getCA()
 	{
-		return this.CA;
+		return this.customeraccount;
 	}
 	public void setCA(Customeraccount value)
 	{
-		this.CA = value;
+		this.customeraccount = value;
 	}
 
 	@ManyToOne(fetch=FetchType.LAZY)
@@ -76,7 +76,7 @@ public class Wishlist
 	public Wishlist(int W_Id_,Customeraccount CA_Id_,Article A_Id_,java.sql.Timestamp W_CreateDate_,java.sql.Timestamp W_UpdateDate_)
 	{
 		this.W_Id = W_Id_;
-		this.CA = CA_Id_;
+		this.customeraccount = CA_Id_;
 		this.article = A_Id_;
 		this.W_CreateDate = W_CreateDate_;
 		this.W_UpdateDate = W_UpdateDate_;

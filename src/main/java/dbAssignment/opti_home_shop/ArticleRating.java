@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 
 @javax.persistence.Entity
 @Table(name = "articlerating")
@@ -23,7 +24,7 @@ public class ArticleRating {
 		this.AR_Id = value;
 	}
 
-	@Column
+	@Column (insertable = false, updatable = false)
 	private int CA_Id;
 
 	public int getCA_Id() {
@@ -34,7 +35,7 @@ public class ArticleRating {
 		this.CA_Id = value;
 	}
 
-	@Column
+	@Column (insertable = false, updatable = false)
 	private int A_Id;
 
 	public int getA_Id() {
@@ -88,8 +89,9 @@ public class ArticleRating {
 	public void setAR_UpdateDate(java.sql.Timestamp value) {
 		this.AR_UpdateDate = value;
 	}
-	
-	@ManyToOne(fetch=FetchType.LAZY)
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "A_Id")
 	private Article article;
 
 	public Article getArticle() {
@@ -100,9 +102,10 @@ public class ArticleRating {
 		this.article = article;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CA_Id")
 	private Customeraccount customeraccount;
-	
+
 	public Customeraccount getCustomeraccount() {
 		return customeraccount;
 	}
@@ -112,7 +115,7 @@ public class ArticleRating {
 	}
 
 	public ArticleRating(int AR_Id_, int CA_Id_, int A_Id_, String AR_Describtion_, byte AR_Rating_,
-			java.sql.Timestamp AR_CreateDate_, java.sql.Timestamp AR_UpdateDate_) {
+			java.sql.Timestamp AR_CreateDate_, java.sql.Timestamp AR_UpdateDate_, Article article, Customeraccount customeraccount) {
 		this.AR_Id = AR_Id_;
 		this.CA_Id = CA_Id_;
 		this.A_Id = A_Id_;
@@ -120,6 +123,8 @@ public class ArticleRating {
 		this.AR_Rating = AR_Rating_;
 		this.AR_CreateDate = AR_CreateDate_;
 		this.AR_UpdateDate = AR_UpdateDate_;
+		this.article = article;
+		this.customeraccount= customeraccount;
 	}
 
 	public ArticleRating() {

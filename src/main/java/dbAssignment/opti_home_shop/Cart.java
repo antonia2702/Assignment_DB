@@ -26,7 +26,7 @@ public class Cart {
 		this.CART_Id = value;
 	}
 
-	@Column
+	@Column (insertable = false, updatable = false)
 	private int CA_Id;
 
 	public int getCA_Id() {
@@ -37,7 +37,7 @@ public class Cart {
 		this.CA_Id = value;
 	}
 
-	@Column
+	@Column (insertable = false, updatable = false)
 	private int A_Id;
 
 	public int getA_Id() {
@@ -128,13 +128,15 @@ public class Cart {
 	}
 
 	public Cart(int CART_Id_, int CA_Id_, int A_Id_, int CART_Quantity_, java.sql.Timestamp CART_CreateDate_,
-			java.sql.Timestamp CART_UpdateDate_) {
+			java.sql.Timestamp CART_UpdateDate_, Article article, Customeraccount customeraccount) {
 		this.CART_Id = CART_Id_;
 		this.CA_Id = CA_Id_;
 		this.A_Id = A_Id_;
 		this.CART_Quantity = CART_Quantity_;
 		this.CART_CreateDate = CART_CreateDate_;
 		this.CART_UpdateDate = CART_UpdateDate_;
+		this.article = article;
+		this.customeraccount = customeraccount;
 	}
 
 	public Cart() {

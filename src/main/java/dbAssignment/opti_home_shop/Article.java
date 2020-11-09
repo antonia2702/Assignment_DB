@@ -114,7 +114,7 @@ public class Article {
 		this.A_SellingPrice = value;
 	}
 
-	@Column
+	@Column (insertable=false, updatable=false)
 	private int AI_Id;
 
 	public int getAI_Id() {
@@ -125,7 +125,7 @@ public class Article {
 		this.AI_Id = value;
 	}
 
-	@Column
+	@Column (insertable=false, updatable=false)
 	private int AG_Id;
 
 	public int getAG_Id() {
@@ -136,7 +136,7 @@ public class Article {
 		this.AG_Id = value;
 	}
 
-	@Column
+	@Column (insertable=false, updatable=false)
 	private int SUP_Id;
 
 	public int getSUP_Id() {
@@ -147,7 +147,7 @@ public class Article {
 		this.SUP_Id = value;
 	}
 
-	@Column
+	@Column (insertable=false, updatable=false)
 	private int STOR_Id;
 
 	public int getSTOR_Id() {
@@ -158,7 +158,7 @@ public class Article {
 		this.STOR_Id = value;
 	}
 
-	@Column
+	@Column (insertable=false, updatable=false)
 	private int DG_Id;
 
 	public int getDG_Id() {
@@ -169,7 +169,7 @@ public class Article {
 		this.DG_Id = value;
 	}
 
-	@Column
+	@Column (insertable=false, updatable=false)
 	private int CTN_Id;
 
 	public int getCTN_Id() {
@@ -310,7 +310,8 @@ public class Article {
 	public Article(int A_Id_, String A_ArticleNo_, String A_ManufacturerArtNo_, byte A_Active_, String A_Name_,
 			String A_Description_, String A_DeliveryTime_, float A_PurchasingPrice_, float A_SellingPrice_, int AI_Id_,
 			int AG_Id_, int SUP_Id_, int STOR_Id_, int DG_Id_, int CTN_Id_, java.sql.Timestamp A_CreateDate_,
-			java.sql.Timestamp A_UpdateDate_) {
+			java.sql.Timestamp A_UpdateDate_, DangerousGoods dangerousGood, Supplier supplier, ArticleInventory articleInventory,
+			ArticleGroup articleGroup, CustomTariffNumbers customTariffNumber, Storage storage) {
 		this.A_Id = A_Id_;
 		this.A_ArticleNo = A_ArticleNo_;
 		this.A_ManufacturerArtNo = A_ManufacturerArtNo_;
@@ -328,6 +329,12 @@ public class Article {
 		this.CTN_Id = CTN_Id_;
 		this.A_CreateDate = A_CreateDate_;
 		this.A_UpdateDate = A_UpdateDate_;
+		this.dangerousGood = dangerousGood;
+		this.supplier = supplier;
+		this.articleInventory = articleInventory;
+		this.articleGroup = articleGroup;
+		this.customTariffNumber = customTariffNumber;
+		this.storage = storage;
 	}
 
 	public Article() {

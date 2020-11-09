@@ -24,7 +24,7 @@ public class OrderTable {
 		this.OT_Id = value;
 	}
 
-	@Column
+	@Column (insertable = false, updatable = false)
 	private int CART_Id;
 
 	public int getCART_Id() {
@@ -35,7 +35,7 @@ public class OrderTable {
 		this.CART_Id = value;
 	}
 
-	@Column
+	@Column (insertable = false, updatable = false)
 	private int SHIP_Id;
 
 	public int getSHIP_Id() {
@@ -58,9 +58,9 @@ public class OrderTable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="CART_Id")
+	@JoinColumn(name = "CART_Id")
 	private Cart cart;
-	
+
 	public Cart getCart() {
 		return cart;
 	}
@@ -68,9 +68,9 @@ public class OrderTable {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="SHIP_Id")
+	@JoinColumn(name = "SHIP_Id")
 	private Shipping shipping;
 
 	public Shipping getShipping() {
@@ -81,17 +81,20 @@ public class OrderTable {
 		this.shipping = shipping;
 	}
 
-	public OrderTable(int OT_Id_, int CART_Id_, int SHIP_Id_, java.sql.Timestamp O_CreateDate_) {
+	public OrderTable(int OT_Id_, int CART_Id_, int SHIP_Id_, java.sql.Timestamp O_CreateDate_, Cart cart,
+			Shipping shipping) {
 		this.OT_Id = OT_Id_;
 		this.CART_Id = CART_Id_;
 		this.SHIP_Id = SHIP_Id_;
 		this.O_CreateDate = O_CreateDate_;
+		this.shipping = shipping;
+		this.cart = cart;
 	}
-	
+
 	public OrderTable() {
-		
+
 	}
-	
+
 	@Override
 	public String toString() {
 		return "" + OT_Id;

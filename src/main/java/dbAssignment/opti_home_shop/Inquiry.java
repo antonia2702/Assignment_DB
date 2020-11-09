@@ -24,7 +24,7 @@ public class Inquiry {
 		this.I_Id = value;
 	}
 
-	@Column
+	@Column (insertable = false, updatable = false)
 	private int CART_Id;
 
 	public int getCART_Id() {
@@ -69,11 +69,12 @@ public class Inquiry {
 		this.cart = cart;
 	}
 
-	public Inquiry(int I_Id_, int CART_Id_, String I_Description_, java.sql.Timestamp I_CreateDate_) {
+	public Inquiry(int I_Id_, int CART_Id_, String I_Description_, java.sql.Timestamp I_CreateDate_, Cart cart) {
 		this.I_Id = I_Id_;
 		this.CART_Id = CART_Id_;
 		this.I_Description = I_Description_;
 		this.I_CreateDate = I_CreateDate_;
+		this.cart = cart;
 	}
 	
 	public Inquiry() {

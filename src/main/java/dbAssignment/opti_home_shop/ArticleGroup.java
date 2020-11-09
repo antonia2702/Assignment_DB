@@ -57,7 +57,7 @@ public class ArticleGroup {
 		this.AG_UpdateDate = value;
 	}
 	
-	@OneToMany(mappedBy = "articlegroup")
+	@OneToMany(mappedBy = "articleGroup")
 	private List<Article> articles;
 
 	public List<Article> getArticles() {

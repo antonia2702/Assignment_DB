@@ -1,16 +1,13 @@
 package dbAssignment.opti_home_shop;
 
+import com.sun.istack.NotNull;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="customeraccount")
@@ -18,6 +15,8 @@ public class Customeraccount
 {
 	@Id
 	@Column (name = "CA_Id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private int CA_Id;
 	public int getCA_Id()
 	{
@@ -29,6 +28,7 @@ public class Customeraccount
 	}
 
 	@Column
+	@NotNull
 	private String CA_UserName;
 	public String getCA_UserName()
 	{
@@ -40,6 +40,7 @@ public class Customeraccount
 	}
 
 	@Column
+	@NotNull
 	private String CA_Password;
 	public String getCA_Password()
 	{
@@ -52,6 +53,7 @@ public class Customeraccount
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="R_Id")
+	@NotNull
 	private Role R;
 	public Role getR()
 	{
@@ -64,6 +66,7 @@ public class Customeraccount
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="DA_Id")
+	@NotNull
 	private Deliveryadress DA;
 	public Deliveryadress getDA()
 	{
@@ -76,6 +79,7 @@ public class Customeraccount
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="BA_Id")
+	@NotNull
 	private Billingadress BA;
 	public Billingadress getBA()
 	{
@@ -88,6 +92,7 @@ public class Customeraccount
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="BD_Id")
+	@NotNull
 	private Bankdetails BD;
 	public Bankdetails getBD()
 	{
@@ -99,6 +104,7 @@ public class Customeraccount
 	}
 
 	@Column
+	@CreationTimestamp
 	private java.sql.Timestamp CA_CreateDate;
 	public java.sql.Timestamp getCA_CreateDate()
 	{
@@ -110,6 +116,8 @@ public class Customeraccount
 	}
 
 	@Column
+	@NotNull
+	@UpdateTimestamp
 	private java.sql.Timestamp CA_UpdateDate;
 	public java.sql.Timestamp getCA_UpdateDate()
 	{
@@ -147,17 +155,14 @@ public class Customeraccount
 		this.carts = carts;
 	}
 	
-	public Customeraccount(int CA_Id_,String CA_UserName_,String CA_Password_,Role R_Id_,Deliveryadress DA_Id_,Billingadress BA_Id_,Bankdetails BD_Id_,java.sql.Timestamp CA_CreateDate_,java.sql.Timestamp CA_UpdateDate_)
+	public Customeraccount(String CA_UserName_,String CA_Password_,Role R_Id_,Deliveryadress DA_Id_,Billingadress BA_Id_,Bankdetails BD_Id_)
 	{
-		this.CA_Id = CA_Id_;
 		this.CA_UserName = CA_UserName_;
 		this.CA_Password = CA_Password_;
 		this.R = R_Id_;
 		this.DA = DA_Id_;
 		this.BA = BA_Id_;
 		this.BD = BD_Id_;
-		this.CA_CreateDate = CA_CreateDate_;
-		this.CA_UpdateDate = CA_UpdateDate_;
 	}
 	public Customeraccount() {}
 	

@@ -1,13 +1,13 @@
 package dbAssignment.opti_home_shop;
 
+import com.sun.istack.NotNull;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="postalcode")
@@ -15,6 +15,8 @@ public class Postalcode
 {
 	@Id
 	@Column (name = "PC_Id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private int PC_Id;
 	public int getPC_Id()
 	{
@@ -26,6 +28,7 @@ public class Postalcode
 	}
 
 	@Column
+	@NotNull
 	private String PC_Place;
 	public String getPC_Place()
 	{
@@ -37,6 +40,7 @@ public class Postalcode
 	}
 
 	@Column
+	@NotNull
 	private String PC_State;
 	public String getPC_State()
 	{
@@ -48,6 +52,8 @@ public class Postalcode
 	}
 
 	@Column
+	@NotNull
+	@CreationTimestamp
 	private java.sql.Timestamp PC_CreateDate;
 	public java.sql.Timestamp getPC_CreateDate()
 	{
@@ -59,6 +65,8 @@ public class Postalcode
 	}
 
 	@Column
+	@NotNull
+	@UpdateTimestamp
 	private java.sql.Timestamp PC_UpdateDate;
 	public java.sql.Timestamp getPC_UpdateDate()
 	{
@@ -96,13 +104,10 @@ public class Postalcode
 		this.suppliers = suppliers;
 	}
 	
-	public Postalcode(int PC_Id_,String PC_Place_,String PC_State_,java.sql.Timestamp PC_CreateDate_,java.sql.Timestamp PC_UpdateDate_)
+	public Postalcode(String PC_Place_,String PC_State_)
 	{
-		this.PC_Id = PC_Id_;
 		this.PC_Place = PC_Place_;
 		this.PC_State = PC_State_;
-		this.PC_CreateDate = PC_CreateDate_;
-		this.PC_UpdateDate = PC_UpdateDate_;
 	}
 	
 	public Postalcode() {}

@@ -1,16 +1,13 @@
 package dbAssignment.opti_home_shop;
 
+import com.sun.istack.NotNull;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="deliveryadress")
@@ -18,6 +15,8 @@ public class Deliveryadress
 {
 	@Id
 	@Column (name = "DA_Id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private int DA_Id;
 	public int getDA_Id()
 	{
@@ -29,6 +28,7 @@ public class Deliveryadress
 	}
 
 	@Column
+	@NotNull
 	private String DA_FirstName;
 	public String getDA_FirstName()
 	{
@@ -40,6 +40,7 @@ public class Deliveryadress
 	}
 
 	@Column
+	@NotNull
 	private String DA_LastName;
 	public String getDA_LastName()
 	{
@@ -51,6 +52,7 @@ public class Deliveryadress
 	}
 
 	@Column
+	@NotNull
 	private String DA_Street;
 	public String getDA_Street()
 	{
@@ -62,6 +64,7 @@ public class Deliveryadress
 	}
 
 	@Column
+	@NotNull
 	private byte DA_StreetNo;
 	public byte getDA_StreetNo()
 	{
@@ -74,6 +77,7 @@ public class Deliveryadress
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="PC_Id")
+	@NotNull
 	private Postalcode PC;
 	public Postalcode getPC()
 	{
@@ -86,6 +90,7 @@ public class Deliveryadress
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="COUNTRY_Id")
+	@NotNull
 	private Countries COUNTRY;
 	public Countries getCOUNTRY_Id()
 	{
@@ -97,6 +102,8 @@ public class Deliveryadress
 	}
 	
 	@Column
+	@NotNull
+	@CreationTimestamp
 	private java.sql.Timestamp DA_CreateDate;
 	public java.sql.Timestamp getDA_CreateDate()
 	{
@@ -108,6 +115,8 @@ public class Deliveryadress
 	}
 
 	@Column
+	@NotNull
+	@UpdateTimestamp
 	private java.sql.Timestamp DA_UpdateDate;
 	public java.sql.Timestamp getDA_UpdateDate()
 	{
@@ -121,17 +130,14 @@ public class Deliveryadress
 	@OneToMany(mappedBy = "DA")
 	private List<Customeraccount> customeraccounts;
 
-	public Deliveryadress(int DA_Id_,String DA_FirstName_,String DA_LastName_,String DA_Street_,byte DA_StreetNo_,Postalcode PC_Id_,Countries COUNTRY_Id_,java.sql.Timestamp DA_CreateDate_,java.sql.Timestamp DA_UpdateDate_)
+	public Deliveryadress(String DA_FirstName_,String DA_LastName_,String DA_Street_,byte DA_StreetNo_,Postalcode PC_Id_,Countries COUNTRY_Id_)
 	{
-		this.DA_Id = DA_Id_;
 		this.DA_FirstName = DA_FirstName_;
 		this.DA_LastName = DA_LastName_;
 		this.DA_Street = DA_Street_;
 		this.DA_StreetNo = DA_StreetNo_;
 		this.PC = PC_Id_;
 		this.COUNTRY = COUNTRY_Id_;
-		this.DA_CreateDate = DA_CreateDate_;
-		this.DA_UpdateDate = DA_UpdateDate_;
 	}
 	public Deliveryadress() {}
 	

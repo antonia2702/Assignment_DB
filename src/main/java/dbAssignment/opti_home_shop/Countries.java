@@ -1,13 +1,13 @@
 package dbAssignment.opti_home_shop;
 
+import com.sun.istack.NotNull;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="countries")
@@ -15,6 +15,8 @@ public class Countries
 {
 	@Id
 	@Column (name = "COUNTRY_Id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private int COUNTRY_Id;
 	public int getCOUNTRY_Id()
 	{
@@ -26,6 +28,7 @@ public class Countries
 	}
 
 	@Column
+	@NotNull
 	private String COUNTRY_Name;
 	public String getCOUNTRY_Name()
 	{
@@ -37,6 +40,8 @@ public class Countries
 	}
 
 	@Column
+	@NotNull
+	@CreationTimestamp
 	private java.sql.Timestamp COUNTRY_CreateDate;
 	public java.sql.Timestamp getCOUNTRY_CreateDate()
 	{
@@ -48,6 +53,8 @@ public class Countries
 	}
 
 	@Column
+	@NotNull
+	@UpdateTimestamp
 	private java.sql.Timestamp COUNTRY_UpdateDate;
 	public java.sql.Timestamp getCOUNTRY_UpdateDate()
 	{
@@ -85,12 +92,9 @@ public class Countries
 		this.deliveryadresses = deliveryadresses;
 	}
 
-	public Countries(int COUNTRY_Id_,String COUNTRY_Name_,java.sql.Timestamp COUNTRY_CreateDate_,java.sql.Timestamp COUNTRY_UpdateDate_)
+	public Countries(String COUNTRY_Name_)
 	{
-		this.COUNTRY_Id = COUNTRY_Id_;
 		this.COUNTRY_Name = COUNTRY_Name_;
-		this.COUNTRY_CreateDate = COUNTRY_CreateDate_;
-		this.COUNTRY_UpdateDate = COUNTRY_UpdateDate_;
 	}
 	
 	public Countries() {}

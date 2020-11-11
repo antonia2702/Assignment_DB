@@ -1,16 +1,13 @@
 package dbAssignment.opti_home_shop;
 
+import com.sun.istack.NotNull;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="supplier")
@@ -18,6 +15,8 @@ public class Supplier
 {
 	@Id
 	@Column (name = "SUP_Id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private int SUP_Id;
 	public int getSUP_Id()
 	{
@@ -29,6 +28,7 @@ public class Supplier
 	}
 
 	@Column
+	@NotNull
 	private String SUP_Name;
 	public String getSUP_Name()
 	{
@@ -40,6 +40,7 @@ public class Supplier
 	}
 
 	@Column
+	@NotNull
 	private String SUP_LegalForm;
 	public String getSUP_LegalForm()
 	{
@@ -51,6 +52,7 @@ public class Supplier
 	}
 
 	@Column
+	@NotNull
 	private String SUP_Street;
 	public String getSUP_Street()
 	{
@@ -62,6 +64,7 @@ public class Supplier
 	}
 
 	@Column
+	@NotNull
 	private byte SUP_StreetNo;
 	public byte getSUP_StreetNo()
 	{
@@ -74,6 +77,7 @@ public class Supplier
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="PC_Id")
+	@NotNull
 	private Postalcode PC;
 	public Postalcode getPC()
 	{
@@ -86,6 +90,7 @@ public class Supplier
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="COUNTRY_Id")
+	@NotNull
 	private Countries COUNTRY;
 	public Countries getCOUNTRY()
 	{
@@ -98,6 +103,7 @@ public class Supplier
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="BANK_Id")
+	@NotNull
 	private Bank BANK;
 	public Bank getBANK()
 	{
@@ -110,6 +116,7 @@ public class Supplier
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="BD_Id")
+	@NotNull
 	private Bankdetails BD;
 	public Bankdetails getBD()
 	{
@@ -121,6 +128,8 @@ public class Supplier
 	}
 
 	@Column
+	@NotNull
+	@CreationTimestamp
 	private java.sql.Timestamp SUP_CreateDate;
 	public java.sql.Timestamp getSUP_CreateDate()
 	{
@@ -132,6 +141,8 @@ public class Supplier
 	}
 
 	@Column
+	@NotNull
+	@UpdateTimestamp
 	private java.sql.Timestamp SUP_UpdateDate;
 	public java.sql.Timestamp getSUP_UpdateDate()
 	{
@@ -150,9 +161,8 @@ public class Supplier
 	public void setArticles(List<Article> articles) {
 		this.articles = articles;
 	}
-	public Supplier(int SUP_Id_,String SUP_Name_,String SUP_LegalForm_,String SUP_Street_,byte SUP_StreetNo_,Postalcode PC_Id_,Countries COUNTRY_Id_,Bank BANK_Id_,Bankdetails BD_Id_,java.sql.Timestamp SUP_CreateDate_,java.sql.Timestamp SUP_UpdateDate_)
+	public Supplier(String SUP_Name_,String SUP_LegalForm_,String SUP_Street_,byte SUP_StreetNo_,Postalcode PC_Id_,Countries COUNTRY_Id_,Bank BANK_Id_,Bankdetails BD_Id_)
 	{
-		this.SUP_Id = SUP_Id_;
 		this.SUP_Name = SUP_Name_;
 		this.SUP_LegalForm = SUP_LegalForm_;
 		this.SUP_Street = SUP_Street_;
@@ -161,8 +171,6 @@ public class Supplier
 		this.COUNTRY = COUNTRY_Id_;
 		this.BANK = BANK_Id_;
 		this.BD = BD_Id_;
-		this.SUP_CreateDate = SUP_CreateDate_;
-		this.SUP_UpdateDate = SUP_UpdateDate_;
 	}
 	
 	public Supplier() {}

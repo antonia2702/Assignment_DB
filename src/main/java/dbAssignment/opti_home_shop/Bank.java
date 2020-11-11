@@ -1,12 +1,13 @@
 package dbAssignment.opti_home_shop;
 
+import com.sun.istack.NotNull;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @javax.persistence.Entity
 @Table(name = "bank")
@@ -14,6 +15,8 @@ public class Bank {
 
 	@Id
 	@Column(name = "BANK_Id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private int BANK_Id;
 
 	public int getBANK_Id() {
@@ -25,6 +28,7 @@ public class Bank {
 	}
 
 	@Column
+	@NotNull
 	private String BANK_Name;
 
 	public String getBANK_Name() {
@@ -36,6 +40,8 @@ public class Bank {
 	}
 
 	@Column
+	@NotNull
+	@CreationTimestamp
 	private java.sql.Timestamp BANK_CreateDate;
 
 	public java.sql.Timestamp getBANK_CreateDate() {
@@ -47,6 +53,8 @@ public class Bank {
 	}
 
 	@Column
+	@NotNull
+	@UpdateTimestamp
 	private java.sql.Timestamp BANK_UpdateDate;
 
 	public java.sql.Timestamp getBANK_UpdateDate() {
@@ -79,12 +87,8 @@ public class Bank {
 		this.suppliers = suppliers;
 	}
 
-	public Bank(int BANK_Id_, String BANK_Name_, java.sql.Timestamp BANK_CreateDate_,
-			java.sql.Timestamp BANK_UpdateDate_) {
-		this.BANK_Id = BANK_Id_;
+	public Bank(String BANK_Name_) {
 		this.BANK_Name = BANK_Name_;
-		this.BANK_CreateDate = BANK_CreateDate_;
-		this.BANK_UpdateDate = BANK_UpdateDate_;
 	}
 
 	public Bank() {

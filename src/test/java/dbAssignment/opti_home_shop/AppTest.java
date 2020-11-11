@@ -4,35 +4,28 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import javax.persistence.EntityManager;
 
 /**
- * Unit test for simple App.
+ * Unit test: Testing connection to db
  */
 @DisplayName("Connection tests")
 public class AppTest {
 
-    private static BankRepository rr;
+    private static EntityManager em;
 
     @Before
     public void setup(){
-        rr = new BankRepository();
+         em = ConnectionHelper.getConnection();
     }
 
     @Test
     @DisplayName("Successful Connection")
     public void testConnectionToDB() {
-        EntityManager em = rr.getEntityManager();
         Assertions.assertNotNull( em );
         em.close();
-    }
-
-    @Test
-    @DisplayName("Successful Connection")
-    public void testCreate() {
-        Bank r = new Bank();
-        r.setBANK_Name("BankBank");
-        rr.createEntity(r);
     }
 }

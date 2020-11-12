@@ -4,15 +4,21 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @javax.persistence.Entity
 @Table(name = "customtariffnumbers")
 public class CustomTariffNumbers {
 	@Id
-	@Column(name = "CTN_Id")
+	@Column(name = "CTN_Id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int CTN_Id;
 
 	public int getCTN_Id() {
@@ -23,7 +29,7 @@ public class CustomTariffNumbers {
 		this.CTN_Id = value;
 	}
 
-	@Column
+	@Column(nullable = false)
 	private String CTN_Code;
 
 	public String getCTN_Code() {
@@ -34,7 +40,7 @@ public class CustomTariffNumbers {
 		this.CTN_Code = value;
 	}
 
-	@Column
+	@Column(nullable = false)
 	private String CTN_Description;
 
 	public String getCTN_Description() {
@@ -45,7 +51,8 @@ public class CustomTariffNumbers {
 		this.CTN_Description = value;
 	}
 
-	@Column
+	@CreationTimestamp
+	@Column(nullable = false)
 	private java.sql.Timestamp CTN_CreateDate;
 
 	public java.sql.Timestamp getCTN_CreateDate() {
@@ -56,7 +63,8 @@ public class CustomTariffNumbers {
 		this.CTN_CreateDate = value;
 	}
 
-	@Column
+	@UpdateTimestamp
+	@Column(nullable = false)
 	private java.sql.Timestamp CTN_UpdateDate;
 
 	public java.sql.Timestamp getCTN_UpdateDate() {
@@ -90,7 +98,7 @@ public class CustomTariffNumbers {
 	public CustomTariffNumbers() {
 
 	}
-	
+
 	@Override
 	public String toString() {
 		return CTN_Code;

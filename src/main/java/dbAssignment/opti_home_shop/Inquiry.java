@@ -4,16 +4,21 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @javax.persistence.Entity
 @Table(name = "inquiry")
 public class Inquiry {
 	@Id
-	@Column(name = "I_Id")
+	@Column(name = "I_Id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int I_Id;
 
 	public int getI_Id() {
@@ -24,18 +29,7 @@ public class Inquiry {
 		this.I_Id = value;
 	}
 
-	@Column (insertable = false, updatable = false)
-	private int CART_Id;
-
-	public int getCART_Id() {
-		return this.CART_Id;
-	}
-
-	public void setCART_Id(int value) {
-		this.CART_Id = value;
-	}
-
-	@Column
+	@Column(nullable = false)
 	private String I_Description;
 
 	public String getI_Description() {
@@ -46,7 +40,8 @@ public class Inquiry {
 		this.I_Description = value;
 	}
 
-	@Column
+	@CreationTimestamp
+	@Column(nullable = false)
 	private java.sql.Timestamp I_CreateDate;
 
 	public java.sql.Timestamp getI_CreateDate() {
@@ -58,9 +53,9 @@ public class Inquiry {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CART_Id")
+	@JoinColumn(name = "CART_Id", nullable = false)
 	private Cart cart;
-	
+
 	public Cart getCart() {
 		return cart;
 	}
@@ -69,18 +64,17 @@ public class Inquiry {
 		this.cart = cart;
 	}
 
-	public Inquiry(int I_Id_, int CART_Id_, String I_Description_, java.sql.Timestamp I_CreateDate_, Cart cart) {
+	public Inquiry(int I_Id_, String I_Description_, java.sql.Timestamp I_CreateDate_, Cart cart) {
 		this.I_Id = I_Id_;
-		this.CART_Id = CART_Id_;
 		this.I_Description = I_Description_;
 		this.I_CreateDate = I_CreateDate_;
 		this.cart = cart;
 	}
-	
+
 	public Inquiry() {
-		
+
 	}
-	
+
 	@Override
 	public String toString() {
 		return I_Description;

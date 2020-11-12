@@ -4,16 +4,22 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @javax.persistence.Entity
 @Table(name = "articlegroup")
 
 public class ArticleGroup {
 	@Id
-	@Column(name = "AG_Id")
+	@Column(name = "AG_Id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int AG_Id;
 
 	public int getAG_Id() {
@@ -24,7 +30,7 @@ public class ArticleGroup {
 		this.AG_Id = value;
 	}
 
-	@Column
+	@Column(nullable = false)
 	private String AG_Description;
 
 	public String getAG_Description() {
@@ -35,7 +41,8 @@ public class ArticleGroup {
 		this.AG_Description = value;
 	}
 
-	@Column
+	@CreationTimestamp
+	@Column(nullable = false)
 	private java.sql.Timestamp AG_CreateDate;
 
 	public java.sql.Timestamp getAG_CreateDate() {
@@ -46,7 +53,8 @@ public class ArticleGroup {
 		this.AG_CreateDate = value;
 	}
 
-	@Column
+	@UpdateTimestamp
+	@Column(nullable = false)
 	private java.sql.Timestamp AG_UpdateDate;
 
 	public java.sql.Timestamp getAG_UpdateDate() {
@@ -56,7 +64,7 @@ public class ArticleGroup {
 	public void setAG_UpdateDate(java.sql.Timestamp value) {
 		this.AG_UpdateDate = value;
 	}
-	
+
 	@OneToMany(mappedBy = "articleGroup")
 	private List<Article> articles;
 
@@ -75,7 +83,7 @@ public class ArticleGroup {
 		this.AG_CreateDate = AG_CreateDate_;
 		this.AG_UpdateDate = AG_UpdateDate_;
 	}
-	
+
 	public ArticleGroup() {
 	}
 
@@ -85,24 +93,22 @@ public class ArticleGroup {
 	}
 
 	@Override
-    public boolean equals( Object o ) {
-        if ( this == o ) {
-            return true;
-        }
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
 
-        if ( o == null || getClass() != o.getClass() ) {
-            return false;
-        }
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
 
-        ArticleGroup articleGroup = (ArticleGroup) o;
-        return Objects.equals( AG_Id, articleGroup.AG_Id );
-    }
+		ArticleGroup articleGroup = (ArticleGroup) o;
+		return Objects.equals(AG_Id, articleGroup.AG_Id);
+	}
 
-
-    @Override
-    public int hashCode() {
+	@Override
+	public int hashCode() {
 		return Objects.hash(AG_Id, AG_Description, AG_CreateDate, AG_UpdateDate);
 	}
 
-	
 }

@@ -4,16 +4,22 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @javax.persistence.Entity
 @Table(name = "articleinventory")
 
 public class ArticleInventory {
 	@Id
-	@Column(name = "AI_Id")
+	@Column(name = "AI_Id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int AI_Id;
 
 	public int getAI_Id() {
@@ -24,7 +30,7 @@ public class ArticleInventory {
 		this.AI_Id = value;
 	}
 
-	@Column
+	@Column(nullable = false)
 	private int AI_Quantity;
 
 	public int getAI_Quantity() {
@@ -35,7 +41,8 @@ public class ArticleInventory {
 		this.AI_Quantity = value;
 	}
 
-	@Column
+	@CreationTimestamp
+	@Column(nullable = false)
 	private java.sql.Timestamp AI_CreateDate;
 
 	public java.sql.Timestamp getAI_CreateDate() {
@@ -46,7 +53,8 @@ public class ArticleInventory {
 		this.AI_CreateDate = value;
 	}
 
-	@Column
+	@UpdateTimestamp
+	@Column(nullable = false)
 	private java.sql.Timestamp AI_UpdateDate;
 
 	public java.sql.Timestamp getAI_UpdateDate() {

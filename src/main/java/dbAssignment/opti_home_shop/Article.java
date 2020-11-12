@@ -5,17 +5,24 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 @javax.persistence.Entity
 @Table(name = "article")
 public class Article {
 	@Id
-	@Column(name = "A_Id")
+	@Column(name = "A_Id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private int A_Id;
 
 	public int getA_Id() {
@@ -26,7 +33,7 @@ public class Article {
 		this.A_Id = value;
 	}
 
-	@Column
+	@Column(nullable = false)
 	private String A_ArticleNo;
 
 	public String getA_ArticleNo() {
@@ -37,7 +44,7 @@ public class Article {
 		this.A_ArticleNo = value;
 	}
 
-	@Column
+	@Column(nullable = false)
 	private String A_ManufacturerArtNo;
 
 	public String getA_ManufacturerArtNo() {
@@ -48,7 +55,7 @@ public class Article {
 		this.A_ManufacturerArtNo = value;
 	}
 
-	@Column
+	@Column(nullable = false)
 	private byte A_Active;
 
 	public byte getA_Active() {
@@ -59,7 +66,7 @@ public class Article {
 		this.A_Active = value;
 	}
 
-	@Column
+	@Column(nullable = false)
 	private String A_Name;
 
 	public String getA_Name() {
@@ -70,7 +77,7 @@ public class Article {
 		this.A_Name = value;
 	}
 
-	@Column
+	@Column(nullable = false)
 	private String A_Description;
 
 	public String getA_Description() {
@@ -81,7 +88,7 @@ public class Article {
 		this.A_Description = value;
 	}
 
-	@Column
+	@Column(nullable = false)
 	private String A_DeliveryTime;
 
 	public String getA_DeliveryTime() {
@@ -92,7 +99,7 @@ public class Article {
 		this.A_DeliveryTime = value;
 	}
 
-	@Column
+	@Column(nullable = false)
 	private float A_PurchasingPrice;
 
 	public float getA_PurchasingPrice() {
@@ -103,7 +110,7 @@ public class Article {
 		this.A_PurchasingPrice = value;
 	}
 
-	@Column
+	@Column(nullable = false)
 	private float A_SellingPrice;
 
 	public float getA_SellingPrice() {
@@ -114,73 +121,8 @@ public class Article {
 		this.A_SellingPrice = value;
 	}
 
-	@Column (insertable=false, updatable=false)
-	private int AI_Id;
-
-	public int getAI_Id() {
-		return this.AI_Id;
-	}
-
-	public void setAI_Id(int value) {
-		this.AI_Id = value;
-	}
-
-	@Column (insertable=false, updatable=false)
-	private int AG_Id;
-
-	public int getAG_Id() {
-		return this.AG_Id;
-	}
-
-	public void setAG_Id(int value) {
-		this.AG_Id = value;
-	}
-
-	@Column (insertable=false, updatable=false)
-	private int SUP_Id;
-
-	public int getSUP_Id() {
-		return this.SUP_Id;
-	}
-
-	public void setSUP_Id(int value) {
-		this.SUP_Id = value;
-	}
-
-	@Column (insertable=false, updatable=false)
-	private int STOR_Id;
-
-	public int getSTOR_Id() {
-		return this.STOR_Id;
-	}
-
-	public void setSTOR_Id(int value) {
-		this.STOR_Id = value;
-	}
-
-	@Column (insertable=false, updatable=false)
-	private int DG_Id;
-
-	public int getDG_Id() {
-		return this.DG_Id;
-	}
-
-	public void setDG_Id(int value) {
-		this.DG_Id = value;
-	}
-
-	@Column (insertable=false, updatable=false)
-	private int CTN_Id;
-
-	public int getCTN_Id() {
-		return this.CTN_Id;
-	}
-
-	public void setCTN_Id(int value) {
-		this.CTN_Id = value;
-	}
-
-	@Column
+	@CreationTimestamp
+	@Column(nullable = false)
 	private java.sql.Timestamp A_CreateDate;
 
 	public java.sql.Timestamp getA_CreateDate() {
@@ -191,7 +133,8 @@ public class Article {
 		this.A_CreateDate = value;
 	}
 
-	@Column
+	@UpdateTimestamp
+	@Column(nullable = false)
 	private java.sql.Timestamp A_UpdateDate;
 
 	public java.sql.Timestamp getA_UpdateDate() {
@@ -236,7 +179,7 @@ public class Article {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "DG_Id")
+	@JoinColumn(name = "DG_Id", nullable = false)
 	private DangerousGoods dangerousGood;
 
 	public DangerousGoods getDangerousGood() {
@@ -248,7 +191,7 @@ public class Article {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "SUP_Id")
+	@JoinColumn(name = "SUP_Id", nullable = false)
 	private Supplier supplier;
 
 	public Supplier getSupplier() {
@@ -260,7 +203,7 @@ public class Article {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "AI_Id")
+	@JoinColumn(name = "AI_Id", nullable = false)
 	private ArticleInventory articleInventory;
 
 	public ArticleInventory getArticleInventory() {
@@ -272,7 +215,7 @@ public class Article {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "AG_Id")
+	@JoinColumn(name = "AG_Id", nullable = false)
 	private ArticleGroup articleGroup;
 
 	public ArticleGroup getArticleGroup() {
@@ -284,7 +227,7 @@ public class Article {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CTN_Id")
+	@JoinColumn(name = "CTN_Id", nullable = false)
 	private CustomTariffNumbers customTariffNumber;
 
 	public CustomTariffNumbers getCustomTariffNumber() {
@@ -294,9 +237,9 @@ public class Article {
 	public void setCustomTariffNumber(CustomTariffNumbers customTariffNumber) {
 		this.customTariffNumber = customTariffNumber;
 	}
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "STOR_Id")
+	@JoinColumn(name = "STOR_Id", nullable = false)
 	private Storage storage;
 
 	public Storage getStorage() {
@@ -308,10 +251,10 @@ public class Article {
 	}
 
 	public Article(int A_Id_, String A_ArticleNo_, String A_ManufacturerArtNo_, byte A_Active_, String A_Name_,
-			String A_Description_, String A_DeliveryTime_, float A_PurchasingPrice_, float A_SellingPrice_, int AI_Id_,
-			int AG_Id_, int SUP_Id_, int STOR_Id_, int DG_Id_, int CTN_Id_, java.sql.Timestamp A_CreateDate_,
-			java.sql.Timestamp A_UpdateDate_, DangerousGoods dangerousGood, Supplier supplier, ArticleInventory articleInventory,
-			ArticleGroup articleGroup, CustomTariffNumbers customTariffNumber, Storage storage) {
+			String A_Description_, String A_DeliveryTime_, float A_PurchasingPrice_, float A_SellingPrice_,
+			java.sql.Timestamp A_CreateDate_, java.sql.Timestamp A_UpdateDate_, DangerousGoods dangerousGood,
+			Supplier supplier, ArticleInventory articleInventory, ArticleGroup articleGroup,
+			CustomTariffNumbers customTariffNumber, Storage storage) {
 		this.A_Id = A_Id_;
 		this.A_ArticleNo = A_ArticleNo_;
 		this.A_ManufacturerArtNo = A_ManufacturerArtNo_;
@@ -321,12 +264,6 @@ public class Article {
 		this.A_DeliveryTime = A_DeliveryTime_;
 		this.A_PurchasingPrice = A_PurchasingPrice_;
 		this.A_SellingPrice = A_SellingPrice_;
-		this.AI_Id = AI_Id_;
-		this.AG_Id = AG_Id_;
-		this.SUP_Id = SUP_Id_;
-		this.STOR_Id = STOR_Id_;
-		this.DG_Id = DG_Id_;
-		this.CTN_Id = CTN_Id_;
 		this.A_CreateDate = A_CreateDate_;
 		this.A_UpdateDate = A_UpdateDate_;
 		this.dangerousGood = dangerousGood;

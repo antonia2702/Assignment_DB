@@ -4,15 +4,21 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @javax.persistence.Entity
 @Table(name = "shipping")
 public class Shipping {
 	@Id
-	@Column(name = "SHIP_Id")
+	@Column(name = "SHIP_Id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int SHIP_Id;
 
 	public int getSHIP_Id() {
@@ -23,7 +29,7 @@ public class Shipping {
 		this.SHIP_Id = value;
 	}
 
-	@Column
+	@Column(nullable = false)
 	private float SHIP_Costs;
 
 	public float getSHIP_Costs() {
@@ -34,7 +40,8 @@ public class Shipping {
 		this.SHIP_Costs = value;
 	}
 
-	@Column
+	@CreationTimestamp
+	@Column(nullable = false)
 	private java.sql.Timestamp SHIP_CreateDate;
 
 	public java.sql.Timestamp getSHIP_CreateDate() {
@@ -45,7 +52,8 @@ public class Shipping {
 		this.SHIP_CreateDate = value;
 	}
 
-	@Column
+	@UpdateTimestamp
+	@Column(nullable = false)
 	private java.sql.Timestamp SHIP_UpdateDate;
 
 	public java.sql.Timestamp getSHIP_UpdateDate() {
@@ -55,7 +63,7 @@ public class Shipping {
 	public void setSHIP_UpdateDate(java.sql.Timestamp value) {
 		this.SHIP_UpdateDate = value;
 	}
-	
+
 	@OneToMany(mappedBy = "shipping")
 	private List<OrderTable> orderTables;
 
@@ -74,11 +82,11 @@ public class Shipping {
 		this.SHIP_CreateDate = SHIP_CreateDate_;
 		this.SHIP_UpdateDate = SHIP_UpdateDate_;
 	}
-	
+
 	public Shipping() {
-		
+
 	}
-	
+
 	@Override
 	public String toString() {
 		return "" + SHIP_Costs;

@@ -4,15 +4,21 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @javax.persistence.Entity
 @Table(name = "dangerousgoods")
 public class DangerousGoods {
 	@Id
-	@Column(name = "DG_Id")
+	@Column(name = "DG_Id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int DG_Id;
 
 	public int getDG_Id() {
@@ -23,7 +29,7 @@ public class DangerousGoods {
 		this.DG_Id = value;
 	}
 
-	@Column
+	@Column(nullable = false)
 	private String DG_Code;
 
 	public String getDG_Code() {
@@ -34,7 +40,7 @@ public class DangerousGoods {
 		this.DG_Code = value;
 	}
 
-	@Column
+	@Column(nullable = false)
 	private String DG_Description;
 
 	public String getDG_Description() {
@@ -45,7 +51,8 @@ public class DangerousGoods {
 		this.DG_Description = value;
 	}
 
-	@Column
+	@CreationTimestamp
+	@Column(nullable = false)
 	private java.sql.Timestamp DG_CreateDate;
 
 	public java.sql.Timestamp getDG_CreateDate() {
@@ -56,7 +63,8 @@ public class DangerousGoods {
 		this.DG_CreateDate = value;
 	}
 
-	@Column
+	@UpdateTimestamp
+	@Column(nullable = false)
 	private java.sql.Timestamp DG_UpdateDate;
 
 	public java.sql.Timestamp getDG_UpdateDate() {

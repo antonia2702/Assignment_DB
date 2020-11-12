@@ -4,16 +4,21 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @javax.persistence.Entity
 @Table(name = "ordertable")
 public class OrderTable {
 	@Id
-	@Column(name = "OT_Id")
+	@Column(name = "OT_Id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int OT_Id;
 
 	public int getOT_Id() {
@@ -24,29 +29,8 @@ public class OrderTable {
 		this.OT_Id = value;
 	}
 
-	@Column (insertable = false, updatable = false)
-	private int CART_Id;
-
-	public int getCART_Id() {
-		return this.CART_Id;
-	}
-
-	public void setCART_Id(int value) {
-		this.CART_Id = value;
-	}
-
-	@Column (insertable = false, updatable = false)
-	private int SHIP_Id;
-
-	public int getSHIP_Id() {
-		return this.SHIP_Id;
-	}
-
-	public void setSHIP_Id(int value) {
-		this.SHIP_Id = value;
-	}
-
-	@Column
+	@CreationTimestamp
+	@Column(nullable = false)
 	private java.sql.Timestamp O_CreateDate;
 
 	public java.sql.Timestamp getO_CreateDate() {
@@ -58,7 +42,7 @@ public class OrderTable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CART_Id")
+	@JoinColumn(name = "CART_Id", nullable = false)
 	private Cart cart;
 
 	public Cart getCart() {
@@ -70,7 +54,7 @@ public class OrderTable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "SHIP_Id")
+	@JoinColumn(name = "SHIP_Id", nullable = false)
 	private Shipping shipping;
 
 	public Shipping getShipping() {
@@ -81,11 +65,8 @@ public class OrderTable {
 		this.shipping = shipping;
 	}
 
-	public OrderTable(int OT_Id_, int CART_Id_, int SHIP_Id_, java.sql.Timestamp O_CreateDate_, Cart cart,
-			Shipping shipping) {
+	public OrderTable(int OT_Id_, java.sql.Timestamp O_CreateDate_, Cart cart, Shipping shipping) {
 		this.OT_Id = OT_Id_;
-		this.CART_Id = CART_Id_;
-		this.SHIP_Id = SHIP_Id_;
 		this.O_CreateDate = O_CreateDate_;
 		this.shipping = shipping;
 		this.cart = cart;

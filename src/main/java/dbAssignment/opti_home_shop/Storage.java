@@ -4,15 +4,21 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @javax.persistence.Entity
 @Table(name = "storage")
 public class Storage {
 	@Id
-	@Column(name = "STOR_Id")
+	@Column(name = "STOR_Id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int STOR_Id;
 
 	public int getSTOR_Id() {
@@ -23,7 +29,7 @@ public class Storage {
 		this.STOR_Id = value;
 	}
 
-	@Column
+	@Column(nullable = false)
 	private String STOR_No;
 
 	public String getSTOR_No() {
@@ -34,7 +40,7 @@ public class Storage {
 		this.STOR_No = value;
 	}
 
-	@Column
+	@Column(nullable = false)
 	private short STOR_Type;
 
 	public short getSTOR_Type() {
@@ -45,7 +51,8 @@ public class Storage {
 		this.STOR_Type = value;
 	}
 
-	@Column
+	@CreationTimestamp
+	@Column(nullable = false)
 	private java.sql.Timestamp STOR_CreateDate;
 
 	public java.sql.Timestamp getSTOR_CreateDate() {
@@ -56,7 +63,8 @@ public class Storage {
 		this.STOR_CreateDate = value;
 	}
 
-	@Column
+	@UpdateTimestamp
+	@Column(nullable = false)
 	private java.sql.Timestamp STOR_UpdateDate;
 
 	public java.sql.Timestamp getSTOR_UpdateDate() {
@@ -66,10 +74,10 @@ public class Storage {
 	public void setSTOR_UpdateDate(java.sql.Timestamp value) {
 		this.STOR_UpdateDate = value;
 	}
-	
+
 	@OneToMany(mappedBy = "storage")
 	private List<Article> articles;
-	
+
 	public List<Article> getArticles() {
 		return articles;
 	}
@@ -86,11 +94,11 @@ public class Storage {
 		this.STOR_CreateDate = STOR_CreateDate_;
 		this.STOR_UpdateDate = STOR_UpdateDate_;
 	}
-	
+
 	public Storage() {
-		
+
 	}
-	
+
 	@Override
 	public String toString() {
 		return STOR_No;

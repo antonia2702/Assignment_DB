@@ -1,21 +1,28 @@
 package dbAssignment.opti_home_shop;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 @javax.persistence.Entity
 @Table(name = "cart")
 public class Cart {
 	@Id
-	@Column(name = "CART_Id")
+	@Column(name = "CART_Id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int CART_Id;
 
 	public int getCART_Id() {
@@ -26,29 +33,7 @@ public class Cart {
 		this.CART_Id = value;
 	}
 
-	@Column (insertable = false, updatable = false)
-	private int CA_Id;
-
-	public int getCA_Id() {
-		return this.CA_Id;
-	}
-
-	public void setCA_Id(int value) {
-		this.CA_Id = value;
-	}
-
-	@Column (insertable = false, updatable = false)
-	private int A_Id;
-
-	public int getA_Id() {
-		return this.A_Id;
-	}
-
-	public void setA_Id(int value) {
-		this.A_Id = value;
-	}
-
-	@Column
+	@Column(nullable = false)
 	private int CART_Quantity;
 
 	public int getCART_Quantity() {
@@ -59,7 +44,8 @@ public class Cart {
 		this.CART_Quantity = value;
 	}
 
-	@Column
+	@CreationTimestamp
+	@Column(nullable = false)
 	private java.sql.Timestamp CART_CreateDate;
 
 	public java.sql.Timestamp getCART_CreateDate() {
@@ -70,7 +56,8 @@ public class Cart {
 		this.CART_CreateDate = value;
 	}
 
-	@Column
+	@UpdateTimestamp
+	@Column(nullable = false)
 	private java.sql.Timestamp CART_UpdateDate;
 
 	public java.sql.Timestamp getCART_UpdateDate() {
@@ -104,7 +91,7 @@ public class Cart {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "A_Id")
+	@JoinColumn(name = "A_Id", nullable = false)
 	private Article article;
 
 	public Article getArticle() {
@@ -116,7 +103,7 @@ public class Cart {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CA_Id")
+	@JoinColumn(name = "CA_Id", nullable = false)
 	private Customeraccount customeraccount;
 
 	public Customeraccount getCustomeraccount() {
@@ -127,11 +114,9 @@ public class Cart {
 		this.customeraccount = customeraccount;
 	}
 
-	public Cart(int CART_Id_, int CA_Id_, int A_Id_, int CART_Quantity_, java.sql.Timestamp CART_CreateDate_,
+	public Cart(int CART_Id_, int CART_Quantity_, java.sql.Timestamp CART_CreateDate_,
 			java.sql.Timestamp CART_UpdateDate_, Article article, Customeraccount customeraccount) {
 		this.CART_Id = CART_Id_;
-		this.CA_Id = CA_Id_;
-		this.A_Id = A_Id_;
 		this.CART_Quantity = CART_Quantity_;
 		this.CART_CreateDate = CART_CreateDate_;
 		this.CART_UpdateDate = CART_UpdateDate_;

@@ -1,5 +1,9 @@
 package dbAssignment.opti_home_shop;
 
+import com.sun.istack.NotNull;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -11,6 +15,8 @@ public class Bankdetails
 {
 	@Id
 	@Column (name = "BD_Id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private int BD_Id;
 	public int getBD_Id()
 	{
@@ -23,6 +29,7 @@ public class Bankdetails
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="BANK_Id")
+	@NotNull
 	private Bank BANK;
 	public Bank getBANK()
 	{
@@ -34,6 +41,7 @@ public class Bankdetails
 	}
 	
 	@Column
+	@NotNull
 	private String BD_CartholderFirstName;
 	public String getBD_CartholderFirstName()
 	{
@@ -45,6 +53,7 @@ public class Bankdetails
 	}
 
 	@Column
+	@NotNull
 	private String BD_CartholderLastName;
 	public String getBD_CartholderLastName()
 	{
@@ -56,6 +65,7 @@ public class Bankdetails
 	}
 
 	@Column
+	@NotNull
 	private String BD_Bic;
 	public String getBD_Bic()
 	{
@@ -67,6 +77,7 @@ public class Bankdetails
 	}
 
 	@Column
+	@NotNull
 	private String BD_Iban;
 	public String getBD_Iban()
 	{
@@ -78,6 +89,7 @@ public class Bankdetails
 	}
 
 	@Column
+	@NotNull
 	private java.sql.Date BD_CartValidDate;
 	public java.sql.Date getBD_CartValidDate()
 	{
@@ -89,6 +101,8 @@ public class Bankdetails
 	}
 
 	@Column
+	@NotNull
+	@CreationTimestamp
 	private java.sql.Timestamp BD_CreateDate;
 	public java.sql.Timestamp getBD_CreateDate()
 	{
@@ -100,6 +114,8 @@ public class Bankdetails
 	}
 
 	@Column
+	@NotNull
+	@UpdateTimestamp
 	private java.sql.Timestamp BD_UpdateDate;
 	public java.sql.Timestamp getBD_UpdateDate()
 	{
@@ -128,17 +144,14 @@ public class Bankdetails
 		this.customeraccounts = customeraccounts;
 	}
 	
-	public Bankdetails(int BD_Id_,Bank BANK_Id_,String BD_CartholderFirstName_,String BD_CartholderLastName_,String BD_Bic_,String BD_Iban_,java.sql.Date BD_CartValidDate_,java.sql.Timestamp BD_CreateDate_,java.sql.Timestamp BD_UpdateDate_)
+	public Bankdetails(Bank BANK_Id_,String BD_CartholderFirstName_,String BD_CartholderLastName_,String BD_Bic_,String BD_Iban_,java.sql.Date BD_CartValidDate_)
 	{
-		this.BD_Id = BD_Id_;
 		this.BANK = BANK_Id_;
 		this.BD_CartholderFirstName = BD_CartholderFirstName_;
 		this.BD_CartholderLastName = BD_CartholderLastName_;
 		this.BD_Bic = BD_Bic_;
 		this.BD_Iban = BD_Iban_;
 		this.BD_CartValidDate = BD_CartValidDate_;
-		this.BD_CreateDate = BD_CreateDate_;
-		this.BD_UpdateDate = BD_UpdateDate_;
 	}
 	
 	public Bankdetails() {

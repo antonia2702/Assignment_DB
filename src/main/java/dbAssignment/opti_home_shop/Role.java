@@ -1,13 +1,13 @@
 package dbAssignment.opti_home_shop;
 
+import com.sun.istack.NotNull;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="role")
@@ -15,6 +15,8 @@ public class Role
 {
 	@Id
 	@Column (name = "R_Id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private int R_Id;
 	public int getR_Id()
 	{
@@ -26,6 +28,7 @@ public class Role
 	}
 
 	@Column
+	@NotNull
 	private String R_Group;
 	public String getR_Group()
 	{
@@ -37,6 +40,8 @@ public class Role
 	}
 
 	@Column
+	@NotNull
+	@CreationTimestamp
 	private java.sql.Timestamp R_CreateDate;
 	public java.sql.Timestamp getR_CreateDate()
 	{
@@ -48,6 +53,8 @@ public class Role
 	}
 
 	@Column
+	@NotNull
+	@UpdateTimestamp
 	private java.sql.Timestamp R_UpdateDate;
 	public java.sql.Timestamp getR_UpdateDate()
 	{
@@ -67,12 +74,9 @@ public class Role
 		this.customeraccounts = customeraccounts;
 	}
 
-	public Role(int R_Id_,String R_Group_,java.sql.Timestamp R_CreateDate_,java.sql.Timestamp R_UpdateDate_)
+	public Role(String R_Group_)
 	{
-		this.R_Id = R_Id_;
 		this.R_Group = R_Group_;
-		this.R_CreateDate = R_CreateDate_;
-		this.R_UpdateDate = R_UpdateDate_;
 	}
 	
 	public Role() {}

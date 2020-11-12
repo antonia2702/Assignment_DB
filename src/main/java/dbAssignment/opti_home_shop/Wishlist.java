@@ -1,14 +1,12 @@
 package dbAssignment.opti_home_shop;
 
+import com.sun.istack.NotNull;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="wishlist")
@@ -16,6 +14,8 @@ public class Wishlist
 {
 	@Id
 	@Column (name = "W_Id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private int W_Id;
 	public int getW_Id()
 	{
@@ -28,6 +28,7 @@ public class Wishlist
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="CA_Id")
+	@NotNull
 	private Customeraccount customeraccount;
 	public Customeraccount getCA()
 	{
@@ -40,6 +41,7 @@ public class Wishlist
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="A_Id")
+	@NotNull
 	private Article article;
 	public Article getArticle()
 	{
@@ -51,6 +53,8 @@ public class Wishlist
 	}
 
 	@Column
+	@NotNull
+	@CreationTimestamp
 	private java.sql.Timestamp W_CreateDate;
 	public java.sql.Timestamp getW_CreateDate()
 	{
@@ -62,6 +66,8 @@ public class Wishlist
 	}
 
 	@Column
+	@NotNull
+	@UpdateTimestamp
 	private java.sql.Timestamp W_UpdateDate;
 	public java.sql.Timestamp getW_UpdateDate()
 	{
@@ -73,13 +79,10 @@ public class Wishlist
 	}
 
 
-	public Wishlist(int W_Id_,Customeraccount CA_Id_,Article A_Id_,java.sql.Timestamp W_CreateDate_,java.sql.Timestamp W_UpdateDate_)
+	public Wishlist(Customeraccount CA_Id_,Article A_Id_)
 	{
-		this.W_Id = W_Id_;
 		this.customeraccount = CA_Id_;
 		this.article = A_Id_;
-		this.W_CreateDate = W_CreateDate_;
-		this.W_UpdateDate = W_UpdateDate_;
 	}
 	
 	public Wishlist() {}

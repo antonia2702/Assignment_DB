@@ -86,13 +86,9 @@ public class Storage {
 		this.articles = articles;
 	}
 
-	public Storage(int STOR_Id_, String STOR_No_, short STOR_Type_, java.sql.Timestamp STOR_CreateDate_,
-			java.sql.Timestamp STOR_UpdateDate_) {
-		this.STOR_Id = STOR_Id_;
+	public Storage(String STOR_No_, short STOR_Type_) {
 		this.STOR_No = STOR_No_;
 		this.STOR_Type = STOR_Type_;
-		this.STOR_CreateDate = STOR_CreateDate_;
-		this.STOR_UpdateDate = STOR_UpdateDate_;
 	}
 
 	public Storage() {

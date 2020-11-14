@@ -101,13 +101,9 @@ public class ArticleRating {
 		this.customeraccount = customeraccount;
 	}
 
-	public ArticleRating(int AR_Id_, String AR_Describtion_, byte AR_Rating_, java.sql.Timestamp AR_CreateDate_,
-			java.sql.Timestamp AR_UpdateDate_, Article article, Customeraccount customeraccount) {
-		this.AR_Id = AR_Id_;
+	public ArticleRating(String AR_Describtion_, byte AR_Rating_, Article article, Customeraccount customeraccount) {
 		this.AR_Describtion = AR_Describtion_;
 		this.AR_Rating = AR_Rating_;
-		this.AR_CreateDate = AR_CreateDate_;
-		this.AR_UpdateDate = AR_UpdateDate_;
 		this.article = article;
 		this.customeraccount = customeraccount;
 	}

@@ -250,12 +250,10 @@ public class Article {
 		this.storage = storage;
 	}
 
-	public Article(int A_Id_, String A_ArticleNo_, String A_ManufacturerArtNo_, byte A_Active_, String A_Name_,
+	public Article(String A_ArticleNo_, String A_ManufacturerArtNo_, byte A_Active_, String A_Name_,
 			String A_Description_, String A_DeliveryTime_, float A_PurchasingPrice_, float A_SellingPrice_,
-			java.sql.Timestamp A_CreateDate_, java.sql.Timestamp A_UpdateDate_, DangerousGoods dangerousGood,
-			Supplier supplier, ArticleInventory articleInventory, ArticleGroup articleGroup,
-			CustomTariffNumbers customTariffNumber, Storage storage) {
-		this.A_Id = A_Id_;
+			DangerousGoods dangerousGood,Supplier supplier, ArticleInventory articleInventory,
+			ArticleGroup articleGroup,CustomTariffNumbers customTariffNumber, Storage storage) {
 		this.A_ArticleNo = A_ArticleNo_;
 		this.A_ManufacturerArtNo = A_ManufacturerArtNo_;
 		this.A_Active = A_Active_;
@@ -264,8 +262,6 @@ public class Article {
 		this.A_DeliveryTime = A_DeliveryTime_;
 		this.A_PurchasingPrice = A_PurchasingPrice_;
 		this.A_SellingPrice = A_SellingPrice_;
-		this.A_CreateDate = A_CreateDate_;
-		this.A_UpdateDate = A_UpdateDate_;
 		this.dangerousGood = dangerousGood;
 		this.supplier = supplier;
 		this.articleInventory = articleInventory;

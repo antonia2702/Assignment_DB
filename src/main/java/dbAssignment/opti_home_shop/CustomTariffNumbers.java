@@ -86,13 +86,9 @@ public class CustomTariffNumbers {
 		this.article = article;
 	}
 
-	public CustomTariffNumbers(int CTN_Id_, String CTN_Code_, String CTN_Description_,
-			java.sql.Timestamp CTN_CreateDate_, java.sql.Timestamp CTN_UpdateDate_) {
-		this.CTN_Id = CTN_Id_;
+	public CustomTariffNumbers(String CTN_Code_, String CTN_Description_) {
 		this.CTN_Code = CTN_Code_;
 		this.CTN_Description = CTN_Description_;
-		this.CTN_CreateDate = CTN_CreateDate_;
-		this.CTN_UpdateDate = CTN_UpdateDate_;
 	}
 
 	public CustomTariffNumbers() {

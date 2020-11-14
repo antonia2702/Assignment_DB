@@ -15,7 +15,6 @@ public class Postalcode
 {
 	@Id
 	@Column (name = "PC_Id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
 	private int PC_Id;
 	public int getPC_Id()
@@ -104,8 +103,9 @@ public class Postalcode
 		this.suppliers = suppliers;
 	}
 	
-	public Postalcode(String PC_Place_,String PC_State_)
+	public Postalcode(int PC_Id_, String PC_Place_,String PC_State_)
 	{
+		this.PC_Id = PC_Id_;
 		this.PC_Place = PC_Place_;
 		this.PC_State = PC_State_;
 	}

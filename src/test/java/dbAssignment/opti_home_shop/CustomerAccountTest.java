@@ -28,6 +28,7 @@ public class CustomerAccountTest {
         Customeraccount customeraccount = customeraccountRepository.findById(1);
 
         Assertions.assertNotNull(customeraccount);
+        Assertions.assertEquals("Hansshoppt12",customeraccount.getCA_UserName());
     }
 
     @Test

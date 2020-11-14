@@ -28,10 +28,11 @@ public class RoleTest {
         Role role = roleRepository.findById(3);
 
         Assertions.assertNotNull(role);
+        Assertions.assertEquals(3,role.getR_Id());
     }
 
     @Test
-    @DisplayName("Save new Role to existing data")
+    @DisplayName("Save new Role to existing data - executable only once")
     public void testNewRole() {
         Role role = new Role("FAG");
         roleRepository.createEntity( role );

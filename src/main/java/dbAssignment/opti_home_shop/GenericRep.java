@@ -33,7 +33,6 @@ public abstract class GenericRep<T, ID extends Serializable> {
         return em.createQuery( c ).getResultList();
     }
 
-
     public void deleteEntity( T entity ) {
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();

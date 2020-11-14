@@ -76,12 +76,8 @@ public class ArticleInventory {
 		this.articles = articles;
 	}
 
-	public ArticleInventory(int AI_Id_, int AI_Quantity_, java.sql.Timestamp AI_CreateDate_,
-			java.sql.Timestamp AI_UpdateDate_) {
-		this.AI_Id = AI_Id_;
+	public ArticleInventory(int AI_Quantity_) {
 		this.AI_Quantity = AI_Quantity_;
-		this.AI_CreateDate = AI_CreateDate_;
-		this.AI_UpdateDate = AI_UpdateDate_;
 	}
 
 	public ArticleInventory() {

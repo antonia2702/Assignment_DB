@@ -64,10 +64,8 @@ public class Inquiry {
 		this.cart = cart;
 	}
 
-	public Inquiry(int I_Id_, String I_Description_, java.sql.Timestamp I_CreateDate_, Cart cart) {
-		this.I_Id = I_Id_;
+	public Inquiry(String I_Description_, Cart cart) {
 		this.I_Description = I_Description_;
-		this.I_CreateDate = I_CreateDate_;
 		this.cart = cart;
 	}
 

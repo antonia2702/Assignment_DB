@@ -114,12 +114,8 @@ public class Cart {
 		this.customeraccount = customeraccount;
 	}
 
-	public Cart(int CART_Id_, int CART_Quantity_, java.sql.Timestamp CART_CreateDate_,
-			java.sql.Timestamp CART_UpdateDate_, Article article, Customeraccount customeraccount) {
-		this.CART_Id = CART_Id_;
+	public Cart(int CART_Quantity_, Article article, Customeraccount customeraccount) {
 		this.CART_Quantity = CART_Quantity_;
-		this.CART_CreateDate = CART_CreateDate_;
-		this.CART_UpdateDate = CART_UpdateDate_;
 		this.article = article;
 		this.customeraccount = customeraccount;
 	}

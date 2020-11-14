@@ -86,13 +86,9 @@ public class DangerousGoods {
 		this.articles = articles;
 	}
 
-	public DangerousGoods(int DG_Id_, String DG_Code_, String DG_Description_, java.sql.Timestamp DG_CreateDate_,
-			java.sql.Timestamp DG_UpdateDate_) {
-		this.DG_Id = DG_Id_;
+	public DangerousGoods(String DG_Code_, String DG_Description_) {
 		this.DG_Code = DG_Code_;
 		this.DG_Description = DG_Description_;
-		this.DG_CreateDate = DG_CreateDate_;
-		this.DG_UpdateDate = DG_UpdateDate_;
 	}
 	
 	public DangerousGoods() {

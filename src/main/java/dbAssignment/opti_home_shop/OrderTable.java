@@ -65,9 +65,7 @@ public class OrderTable {
 		this.shipping = shipping;
 	}
 
-	public OrderTable(int OT_Id_, java.sql.Timestamp O_CreateDate_, Cart cart, Shipping shipping) {
-		this.OT_Id = OT_Id_;
-		this.O_CreateDate = O_CreateDate_;
+	public OrderTable(Cart cart, Shipping shipping) {
 		this.shipping = shipping;
 		this.cart = cart;
 	}

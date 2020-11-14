@@ -76,12 +76,8 @@ public class ArticleGroup {
 		this.articles = articles;
 	}
 
-	public ArticleGroup(int AG_Id_, String AG_Description_, java.sql.Timestamp AG_CreateDate_,
-			java.sql.Timestamp AG_UpdateDate_) {
-		this.AG_Id = AG_Id_;
+	public ArticleGroup(String AG_Description_) {
 		this.AG_Description = AG_Description_;
-		this.AG_CreateDate = AG_CreateDate_;
-		this.AG_UpdateDate = AG_UpdateDate_;
 	}
 
 	public ArticleGroup() {

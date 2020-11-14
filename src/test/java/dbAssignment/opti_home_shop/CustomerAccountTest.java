@@ -2,12 +2,9 @@ package dbAssignment.opti_home_shop;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-
-import java.util.Iterator;
 
 public class CustomerAccountTest {
     private static CustomeraccountRepository customeraccountRepository;
@@ -37,10 +34,8 @@ public class CustomerAccountTest {
         Customeraccount customeraccount = new Customeraccount("user","user", new RoleRepository().findById(4), new DeliveryadressRepository().findById(1), new BillingadressRepository().findById(1), new BankdetailsRepository().findById(4));
         customeraccountRepository.createEntity( customeraccount );
         int id = 0;
-        Iterator<Customeraccount> iterator = customeraccountRepository.findAll().iterator();
-        while(iterator.hasNext()){
-            Customeraccount c = iterator.next();
-            if(c.getCA_UserName() == "user"){
+        for (Customeraccount c : customeraccountRepository.findAll()) {
+            if (c.getCA_UserName().equals("user")) {
                 id = c.getCA_Id();
                 break;
             }

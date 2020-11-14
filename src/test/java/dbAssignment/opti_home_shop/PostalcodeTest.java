@@ -2,12 +2,9 @@ package dbAssignment.opti_home_shop;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-
-import java.util.Iterator;
 
 public class PostalcodeTest {
     private static PostalcodeRepository postalcodeRepository;
@@ -45,10 +42,8 @@ public class PostalcodeTest {
     public void testDeleteRole() {
         Postalcode postalcode = new Postalcode(2,"delete","me");
         postalcodeRepository.createEntity(postalcode);
-        Iterator<Postalcode> iterator = postalcodeRepository.findAll().iterator();
-        while(iterator.hasNext()){
-            Postalcode p = iterator.next();
-            if(p.getPC_Id() == 2){
+        for (Postalcode p : postalcodeRepository.findAll()) {
+            if (p.getPC_Id() == 2) {
                 postalcode = p;
                 break;
             }

@@ -3,14 +3,7 @@ package dbAssignment.opti_home_shop;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="billingadress")
@@ -72,7 +65,7 @@ public class Billingadress
 		this.BA_StreetNo = value;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name="PC_Id")
 	private Postalcode PC;
 	public Postalcode getPC()
@@ -84,7 +77,7 @@ public class Billingadress
 		this.PC = value;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name="COUNTRY_Id")
 	private Countries COUNTRY;
 	public Countries getCOUNTRY()
@@ -118,7 +111,7 @@ public class Billingadress
 		this.BA_UpdateDate = value;
 	}
 
-	@OneToMany(mappedBy = "BA")
+	@OneToMany(mappedBy = "BA", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Customeraccount> customeraccounts;
 	public List<Customeraccount> getCustomeraccounts() {
 		return customeraccounts;

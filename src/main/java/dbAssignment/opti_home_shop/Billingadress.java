@@ -1,5 +1,9 @@
 package dbAssignment.opti_home_shop;
 
+import com.sun.istack.NotNull;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -10,7 +14,9 @@ import javax.persistence.*;
 public class Billingadress
 {
 	@Id
+	@NotNull
 	@Column (name = "BA_Id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int BA_Id;
 	public int getBA_Id()
 	{
@@ -22,6 +28,7 @@ public class Billingadress
 	}
 
 	@Column
+	@NotNull
 	private String BA_FirstName;
 	public String getBA_FirstName()
 	{
@@ -33,6 +40,7 @@ public class Billingadress
 	}
 
 	@Column
+	@NotNull
 	private String BA_LastName;
 	public String getBA_LastName()
 	{
@@ -44,6 +52,7 @@ public class Billingadress
 	}
 
 	@Column
+	@NotNull
 	private String BA_Street;
 	public String getBA_Street()
 	{
@@ -55,6 +64,7 @@ public class Billingadress
 	}
 
 	@Column
+	@NotNull
 	private String BA_StreetNo;
 	public String getBA_StreetNo()
 	{
@@ -67,6 +77,7 @@ public class Billingadress
 
 	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name="PC_Id")
+	@NotNull
 	private Postalcode PC;
 	public Postalcode getPC()
 	{
@@ -79,6 +90,7 @@ public class Billingadress
 
 	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name="COUNTRY_Id")
+	@NotNull
 	private Countries COUNTRY;
 	public Countries getCOUNTRY()
 	{
@@ -89,6 +101,8 @@ public class Billingadress
 		this.COUNTRY = value;
 	}
 
+	@CreationTimestamp
+	@NotNull
 	@Column
 	private java.sql.Timestamp BA_CreateDate;
 	public java.sql.Timestamp getBA_CreateDate()
@@ -100,6 +114,8 @@ public class Billingadress
 		this.BA_CreateDate = value;
 	}
 
+	@UpdateTimestamp
+	@NotNull
 	@Column
 	private java.sql.Timestamp BA_UpdateDate;
 	public java.sql.Timestamp getBA_UpdateDate()
@@ -120,17 +136,14 @@ public class Billingadress
 		this.customeraccounts = customeraccounts;
 	}
 
-	public Billingadress(int BA_Id_,String BA_FirstName_,String BA_LastName_,String BA_Street_,String BA_StreetNo_,Postalcode PC_Id_,Countries COUNTRY_Id_,java.sql.Timestamp BA_CreateDate_,java.sql.Timestamp BA_UpdateDate_)
+	public Billingadress(String BA_FirstName_,String BA_LastName_,String BA_Street_,String BA_StreetNo_,Postalcode PC_Id_,Countries COUNTRY_Id_)
 	{
-		this.BA_Id = BA_Id_;
 		this.BA_FirstName = BA_FirstName_;
 		this.BA_LastName = BA_LastName_;
 		this.BA_Street = BA_Street_;
 		this.BA_StreetNo = BA_StreetNo_;
 		this.PC = PC_Id_;
 		this.COUNTRY = COUNTRY_Id_;
-		this.BA_CreateDate = BA_CreateDate_;
-		this.BA_UpdateDate = BA_UpdateDate_;
 	}
 	
 	public Billingadress() {}

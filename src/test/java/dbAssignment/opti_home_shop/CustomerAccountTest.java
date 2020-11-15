@@ -58,4 +58,20 @@ public class CustomerAccountTest {
 
         Assertions.assertEquals(billingadress.getBA_FirstName(), customeraccount.getBA().getBA_FirstName());
     }
+
+    @Test
+    @DisplayName("Update customeraccount without merge")
+    public void testUpdatingWithoutMergeCustomeraccount() {
+        Billingadress billingadress = new BillingadressRepository().findById(2);
+        billingadress.setBA_FirstName(billingadress.getBA_FirstName()+"a");
+
+        Customeraccount customeraccount = customeraccountRepository.findById(1);
+        customeraccount.setBA(billingadress);
+
+        customeraccountRepository.updateWithoutMerge(customeraccount);
+
+        customeraccount = customeraccountRepository.findById(2);
+
+        Assertions.assertNotEquals(billingadress.getBA_FirstName(), customeraccount.getBA().getBA_FirstName());
+    }
 }

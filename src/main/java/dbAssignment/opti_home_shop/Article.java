@@ -3,15 +3,7 @@ package dbAssignment.opti_home_shop;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -145,7 +137,7 @@ public class Article {
 		this.A_UpdateDate = value;
 	}
 
-	@OneToMany(mappedBy = "article")
+	@OneToMany(mappedBy = "article", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<ArticleRating> articleRatings;
 
 	public List<ArticleRating> getArticleRatings() {
@@ -156,7 +148,7 @@ public class Article {
 		this.articleRatings = articleRating;
 	}
 
-	@OneToMany(mappedBy = "article")
+	@OneToMany(mappedBy = "article", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Wishlist> wishlists;
 
 	public List<Wishlist> getWishlists() {
@@ -167,7 +159,7 @@ public class Article {
 		this.wishlists = wishlists;
 	}
 
-	@OneToMany(mappedBy = "article")
+	@OneToMany(mappedBy = "article", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Cart> carts;
 
 	public List<Cart> getCarts() {
@@ -178,7 +170,7 @@ public class Article {
 		this.carts = carts;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "DG_Id", nullable = false)
 	private DangerousGoods dangerousGood;
 
@@ -190,7 +182,7 @@ public class Article {
 		this.dangerousGood = dangerousGood;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "SUP_Id", nullable = false)
 	private Supplier supplier;
 
@@ -202,7 +194,7 @@ public class Article {
 		this.supplier = supplier;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "AI_Id", nullable = false)
 	private ArticleInventory articleInventory;
 
@@ -214,7 +206,7 @@ public class Article {
 		this.articleInventory = articleInventory;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "AG_Id", nullable = false)
 	private ArticleGroup articleGroup;
 
@@ -226,7 +218,7 @@ public class Article {
 		this.articleGroup = articleGroup;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "CTN_Id", nullable = false)
 	private CustomTariffNumbers customTariffNumber;
 
@@ -238,7 +230,7 @@ public class Article {
 		this.customTariffNumber = customTariffNumber;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "STOR_Id", nullable = false)
 	private Storage storage;
 

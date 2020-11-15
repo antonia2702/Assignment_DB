@@ -65,7 +65,7 @@ public class Bank {
 		this.BANK_UpdateDate = value;
 	}
 
-	@OneToMany(mappedBy = "BANK")
+	@OneToMany(mappedBy = "BANK", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Bankdetails> bankdetails;
 
 	public List<Bankdetails> getBankdetails() {
@@ -76,7 +76,7 @@ public class Bank {
 		this.bankdetails = bankdetails;
 	}
 
-	@OneToMany(mappedBy = "BANK")
+	@OneToMany(mappedBy = "BANK", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Supplier> suppliers;
 
 	public List<Supplier> getSuppliers() {

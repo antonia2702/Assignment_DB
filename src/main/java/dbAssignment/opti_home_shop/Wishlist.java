@@ -26,7 +26,7 @@ public class Wishlist
 		this.W_Id = value;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name="CA_Id")
 	@NotNull
 	private Customeraccount customeraccount;
@@ -39,7 +39,7 @@ public class Wishlist
 		this.customeraccount = value;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name="A_Id")
 	@NotNull
 	private Article article;

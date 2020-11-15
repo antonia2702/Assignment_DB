@@ -4,15 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -68,7 +60,7 @@ public class Cart {
 		this.CART_UpdateDate = value;
 	}
 
-	@OneToMany(mappedBy = "cart")
+	@OneToMany(mappedBy = "cart", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<OrderTable> ordertables;
 
 	public List<OrderTable> getOrdertables() {
@@ -79,7 +71,7 @@ public class Cart {
 		this.ordertables = ordertables;
 	}
 
-	@OneToMany(mappedBy = "cart")
+	@OneToMany(mappedBy = "cart", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Inquiry> inquiries;
 
 	public List<Inquiry> getInquiries() {
@@ -90,7 +82,7 @@ public class Cart {
 		this.inquiries = inquiries;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "A_Id", nullable = false)
 	private Article article;
 
@@ -102,7 +94,7 @@ public class Cart {
 		this.article = article;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "CA_Id", nullable = false)
 	private Customeraccount customeraccount;
 

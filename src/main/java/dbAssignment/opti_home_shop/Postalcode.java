@@ -76,7 +76,7 @@ public class Postalcode
 		this.PC_UpdateDate = value;
 	}
 
-	@OneToMany(mappedBy = "PC")
+	@OneToMany(mappedBy = "PC", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Billingadress> billingadresses;
 	public List<Billingadress> getBillingadresses() {
 		return billingadresses;
@@ -85,7 +85,7 @@ public class Postalcode
 		this.billingadresses = billingadresses;
 	}
 
-	@OneToMany(mappedBy = "PC")
+	@OneToMany(mappedBy = "PC", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Deliveryadress> deliveryadresses;
 	public List<Deliveryadress> getDeliveryadresses() {
 		return deliveryadresses;
@@ -94,7 +94,7 @@ public class Postalcode
 		this.deliveryadresses = deliveryadresses;
 	}
 	
-	@OneToMany(mappedBy = "PC")
+	@OneToMany(mappedBy = "PC", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Supplier> suppliers;
 	public List<Supplier> getSuppliers() {
 		return suppliers;

@@ -29,8 +29,7 @@ public class ArticleGroupTest {
         articleGroup.setAG_Description("Luxusmöbel");
 
         articleGroupRepository.createEntity(articleGroup);
-
-        Assertions.assertEquals(articleGroup.getAG_Description(), articleGroupRepository.findById(articleGroup.getAG_Id()).getAG_Description());
+        Assertions.assertNotNull(articleGroupRepository.findById(articleGroup.getAG_Id()));
     }
 
     @Test
@@ -50,9 +49,13 @@ public class ArticleGroupTest {
     @Test
     @DisplayName("Delete ArticleGroup")
     public void deleteArticleGroupEntity () {
-        List<ArticleGroup> articleGroupList = articleGroupRepository.findAll();
-        int a = articleGroupList.size();
-        ArticleGroup articleGroup = articleGroupList.get(a-1);
+
+        ArticleGroup articleGroup = new ArticleGroup();
+        articleGroup.setAG_Description("Luxusmöbel");
+
+        articleGroupRepository.createEntity(articleGroup);
+        Assertions.assertNotNull(articleGroupRepository.findById(articleGroup.getAG_Id()));
+
         articleGroupRepository.deleteEntity(articleGroup);
         Assertions.assertNull(articleGroupRepository.findById(articleGroup.getAG_Id()));
     }

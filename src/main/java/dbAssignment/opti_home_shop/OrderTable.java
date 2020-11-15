@@ -2,14 +2,7 @@ package dbAssignment.opti_home_shop;
 
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -41,7 +34,7 @@ public class OrderTable {
 		this.O_CreateDate = value;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "CART_Id", nullable = false)
 	private Cart cart;
 
@@ -53,7 +46,7 @@ public class OrderTable {
 		this.cart = cart;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "SHIP_Id", nullable = false)
 	private Shipping shipping;
 

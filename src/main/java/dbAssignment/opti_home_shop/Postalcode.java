@@ -15,7 +15,6 @@ public class Postalcode
 {
 	@Id
 	@Column (name = "PC_Id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
 	private int PC_Id;
 	public int getPC_Id()
@@ -77,7 +76,7 @@ public class Postalcode
 		this.PC_UpdateDate = value;
 	}
 
-	@OneToMany(mappedBy = "PC")
+	@OneToMany(mappedBy = "PC", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Billingadress> billingadresses;
 	public List<Billingadress> getBillingadresses() {
 		return billingadresses;
@@ -86,7 +85,7 @@ public class Postalcode
 		this.billingadresses = billingadresses;
 	}
 
-	@OneToMany(mappedBy = "PC")
+	@OneToMany(mappedBy = "PC", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Deliveryadress> deliveryadresses;
 	public List<Deliveryadress> getDeliveryadresses() {
 		return deliveryadresses;
@@ -95,7 +94,7 @@ public class Postalcode
 		this.deliveryadresses = deliveryadresses;
 	}
 	
-	@OneToMany(mappedBy = "PC")
+	@OneToMany(mappedBy = "PC", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Supplier> suppliers;
 	public List<Supplier> getSuppliers() {
 		return suppliers;
@@ -104,8 +103,9 @@ public class Postalcode
 		this.suppliers = suppliers;
 	}
 	
-	public Postalcode(String PC_Place_,String PC_State_)
+	public Postalcode(int PC_Id_, String PC_Place_,String PC_State_)
 	{
+		this.PC_Id = PC_Id_;
 		this.PC_Place = PC_Place_;
 		this.PC_State = PC_State_;
 	}

@@ -27,7 +27,7 @@ public class Bankdetails
 		this.BD_Id = value;
 	}
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name="BANK_Id")
 	@NotNull
 	private Bank BANK;
@@ -126,7 +126,7 @@ public class Bankdetails
 		this.BD_UpdateDate = value;
 	}
 
-	@OneToMany(mappedBy = "BD")
+	@OneToMany(mappedBy = "BD", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Supplier> suppliers;
 	public List<Supplier> getSuppliers() {
 		return suppliers;
@@ -135,7 +135,7 @@ public class Bankdetails
 		this.suppliers = suppliers;
 	}
 	
-	@OneToMany(mappedBy = "BD")
+	@OneToMany(mappedBy = "BD", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Customeraccount> customeraccounts;
 	public List<Customeraccount> getCustomeraccounts() {
 		return customeraccounts;

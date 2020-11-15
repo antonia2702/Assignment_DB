@@ -51,7 +51,7 @@ public class Customeraccount
 		this.CA_Password = value;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name="R_Id")
 	@NotNull
 	private Role R;
@@ -64,7 +64,7 @@ public class Customeraccount
 		this.R = value;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name="DA_Id")
 	@NotNull
 	private Deliveryadress DA;
@@ -77,7 +77,7 @@ public class Customeraccount
 		this.DA = value;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name="BA_Id")
 	@NotNull
 	private Billingadress BA;
@@ -90,7 +90,7 @@ public class Customeraccount
 		this.BA = value;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name="BD_Id")
 	@NotNull
 	private Bankdetails BD;
@@ -128,7 +128,7 @@ public class Customeraccount
 		this.CA_UpdateDate = value;
 	}
 	
-	@OneToMany(mappedBy = "customeraccount")
+	@OneToMany(mappedBy = "customeraccount", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<ArticleRating> articleratings;
 	public List<ArticleRating> getArticleratings() {
 		return articleratings;
@@ -137,7 +137,7 @@ public class Customeraccount
 		this.articleratings = articleratings;
 	}
 	
-	@OneToMany(mappedBy = "customeraccount")
+	@OneToMany(mappedBy = "customeraccount", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Wishlist> wishlists;
 	public List<Wishlist> getWishlists() {
 		return wishlists;
@@ -146,7 +146,7 @@ public class Customeraccount
 		this.wishlists = wishlists;
 	}
 	
-	@OneToMany(mappedBy = "customeraccount")
+	@OneToMany(mappedBy = "customeraccount", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Cart> carts;
 	public List<Cart> getCarts() {
 		return carts;

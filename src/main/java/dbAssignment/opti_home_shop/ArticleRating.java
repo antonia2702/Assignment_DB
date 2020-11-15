@@ -2,18 +2,10 @@ package dbAssignment.opti_home_shop;
 
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import javax.persistence.JoinColumn;
 
 @javax.persistence.Entity
 @Table(name = "articlerating")
@@ -77,7 +69,7 @@ public class ArticleRating {
 		this.AR_UpdateDate = value;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "A_Id", nullable = false)
 	private Article article;
 
@@ -89,7 +81,7 @@ public class ArticleRating {
 		this.article = article;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "CA_Id", nullable = false)
 	private Customeraccount customeraccount;
 

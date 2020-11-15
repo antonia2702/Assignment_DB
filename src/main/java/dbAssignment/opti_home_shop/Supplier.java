@@ -75,7 +75,7 @@ public class Supplier
 		this.SUP_StreetNo = value;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name="PC_Id")
 	@NotNull
 	private Postalcode PC;
@@ -88,7 +88,7 @@ public class Supplier
 		this.PC = value;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name="COUNTRY_Id")
 	@NotNull
 	private Countries COUNTRY;
@@ -101,7 +101,7 @@ public class Supplier
 		this.COUNTRY = value;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name="BANK_Id")
 	@NotNull
 	private Bank BANK;
@@ -114,7 +114,7 @@ public class Supplier
 		this.BANK = value;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name="BD_Id")
 	@NotNull
 	private Bankdetails BD;
@@ -153,7 +153,7 @@ public class Supplier
 		this.SUP_UpdateDate = value;
 	}
 	
-	@OneToMany(mappedBy = "supplier")
+	@OneToMany(mappedBy = "supplier", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Article> articles;
 	public List<Article> getArticles() {
 		return articles;

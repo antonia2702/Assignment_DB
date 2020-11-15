@@ -65,7 +65,7 @@ public class Role
 		this.R_UpdateDate = value;
 	}
 	
-	@OneToMany(mappedBy = "R")
+	@OneToMany(mappedBy = "R", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Customeraccount> customeraccounts;
 	public List<Customeraccount> getCustomeraccounts() {
 		return customeraccounts;

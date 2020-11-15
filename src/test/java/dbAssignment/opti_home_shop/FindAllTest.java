@@ -1,12 +1,12 @@
 package dbAssignment.opti_home_shop;
 
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Iterator;
 
 
 /**
@@ -54,6 +54,7 @@ public class FindAllTest {
     public void testFindAll() {
         System.out.println(rr.getClass().toString() + ": ");
         for (Object o : rr.findAll()) {
+            Assertions.assertNotNull(o);
             System.out.println(o.toString());
         }
         System.out.println();

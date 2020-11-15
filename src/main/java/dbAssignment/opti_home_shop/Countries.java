@@ -65,7 +65,7 @@ public class Countries
 		this.COUNTRY_UpdateDate = value;
 	}
 
-	@OneToMany(mappedBy = "COUNTRY")
+	@OneToMany(mappedBy = "COUNTRY", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Billingadress> billingadresses;
 	public List<Billingadress> getBillingadresses() {
 		return billingadresses;
@@ -74,7 +74,7 @@ public class Countries
 		this.billingadresses = billingadresses;
 	}
 	
-	@OneToMany(mappedBy = "COUNTRY")
+	@OneToMany(mappedBy = "COUNTRY", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Supplier> suppliers;
 	public List<Supplier> getSuppliers() {
 		return suppliers;
@@ -83,7 +83,7 @@ public class Countries
 		this.suppliers = suppliers;
 	}
 	
-	@OneToMany(mappedBy = "COUNTRY")
+	@OneToMany(mappedBy = "COUNTRY", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Deliveryadress> deliveryadresses;
 	public List<Deliveryadress> getDeliveryadresses() {
 		return deliveryadresses;

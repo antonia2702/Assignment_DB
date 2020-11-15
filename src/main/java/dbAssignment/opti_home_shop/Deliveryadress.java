@@ -75,7 +75,7 @@ public class Deliveryadress
 		this.DA_StreetNo = value;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name="PC_Id")
 	@NotNull
 	private Postalcode PC;
@@ -88,7 +88,7 @@ public class Deliveryadress
 		this.PC = value;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name="COUNTRY_Id")
 	@NotNull
 	private Countries COUNTRY;
@@ -127,7 +127,7 @@ public class Deliveryadress
 		this.DA_UpdateDate = value;
 	}
 	
-	@OneToMany(mappedBy = "DA")
+	@OneToMany(mappedBy = "DA", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Customeraccount> customeraccounts;
 
 	public Deliveryadress(String DA_FirstName_,String DA_LastName_,String DA_Street_,byte DA_StreetNo_,Postalcode PC_Id_,Countries COUNTRY_Id_)

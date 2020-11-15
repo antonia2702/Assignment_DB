@@ -3,12 +3,7 @@ package dbAssignment.opti_home_shop;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -64,7 +59,7 @@ public class Shipping {
 		this.SHIP_UpdateDate = value;
 	}
 
-	@OneToMany(mappedBy = "shipping")
+	@OneToMany(mappedBy = "shipping", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<OrderTable> orderTables;
 
 	public List<OrderTable> getOrderTables() {

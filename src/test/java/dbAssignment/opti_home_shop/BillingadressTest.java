@@ -1,5 +1,10 @@
 package dbAssignment.opti_home_shop;
 
+import dbAssignment.opti_home_shop.data.model.Billingadress;
+import dbAssignment.opti_home_shop.data.model.Countries;
+import dbAssignment.opti_home_shop.data.repository.BillingadressRepository;
+import dbAssignment.opti_home_shop.data.repository.CountriesRepository;
+import dbAssignment.opti_home_shop.data.repository.PostalcodeRepository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

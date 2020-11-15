@@ -1,11 +1,10 @@
 package dbAssignment.opti_home_shop;
 
+import dbAssignment.opti_home_shop.connection.ConnectionHelper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
 import javax.persistence.EntityManager;
 

@@ -1,5 +1,8 @@
 package dbAssignment.opti_home_shop;
 
+import dbAssignment.opti_home_shop.data.model.Billingadress;
+import dbAssignment.opti_home_shop.data.model.Customeraccount;
+import dbAssignment.opti_home_shop.data.repository.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

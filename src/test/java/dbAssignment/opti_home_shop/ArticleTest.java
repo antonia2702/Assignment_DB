@@ -1,10 +1,13 @@
 package dbAssignment.opti_home_shop;
 
+import dbAssignment.opti_home_shop.data.model.Article;
+import dbAssignment.opti_home_shop.data.model.ArticleGroup;
+import dbAssignment.opti_home_shop.data.model.CustomTariffNumbers;
+import dbAssignment.opti_home_shop.data.repository.*;
 import org.junit.*;
 import org.junit.Test;
 import org.junit.jupiter.api.*;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 public class ArticleTest {

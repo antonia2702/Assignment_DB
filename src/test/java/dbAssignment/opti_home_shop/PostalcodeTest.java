@@ -1,5 +1,7 @@
 package dbAssignment.opti_home_shop;
 
+import dbAssignment.opti_home_shop.data.model.Postalcode;
+import dbAssignment.opti_home_shop.data.repository.PostalcodeRepository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,10 +1,12 @@
 package dbAssignment.opti_home_shop;
 
+import dbAssignment.opti_home_shop.data.model.Cart;
+import dbAssignment.opti_home_shop.data.repository.ArticleRepository;
+import dbAssignment.opti_home_shop.data.repository.CartRepository;
+import dbAssignment.opti_home_shop.data.repository.CustomeraccountRepository;
 import org.junit.*;
 import org.junit.Test;
 import org.junit.jupiter.api.*;
-
-import java.util.List;
 
 public class CartTest {
 

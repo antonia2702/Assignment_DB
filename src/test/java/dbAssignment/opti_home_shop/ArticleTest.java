@@ -27,13 +27,14 @@ public class ArticleTest {
 	@DisplayName("Finding Article Entity")
 	public void testFindingArticleEntity() {
 		Article article = articleRepository.findById(1);
-		//System.out.println(article.getA_Name());
-		Assertions.assertEquals("Büro Stuhl Comfort", article.getA_Name());
+
+		Assertions.assertNotNull(article);
+		Assertions.assertEquals(1, article.getA_Id());
 	}
 
 	@Test
 	@DisplayName("Updating Article with merge")
-	public void updateEntityWithMerge() {
+	public void testUpdateEntityWithMerge() {
 		//Create necessary repositories and establish connection
 		ArticleGroupRepository articleGroupRepository = new ArticleGroupRepository();
 		articleGroupRepository.reconnectToDatabase();
@@ -71,7 +72,7 @@ public class ArticleTest {
 
 	@Test
 	@DisplayName("Updating Article without merge")
-	public void updateEntityWithoutMerge() {
+	public void testUpdateEntityWithoutMerge() {
 		//Create necessary repositories and establish connection
 		CustomTariffNumbersRepository customTariffNumbersRepository = new CustomTariffNumbersRepository();
 		customTariffNumbersRepository.reconnectToDatabase();
@@ -98,6 +99,23 @@ public class ArticleTest {
 		Assertions.assertNotEquals(article.getA_UpdateDate(), storedArticle.getA_UpdateDate());
 		Assertions.assertNotEquals(article.getCustomTariffNumber().getCTN_UpdateDate(),
 				storedArticle.getCustomTariffNumber().getCTN_UpdateDate());
+	}
+
+	@Test
+	@DisplayName("Delete Article")
+	public void testDeleteArticle(){
+		Article article = new Article("Stool_Wood_3", "A234BLK_001", (byte) 0,
+				"Holzhocker", "Holzhocker mit drei Stuhlbeinen, Farbe: naturbelassen",
+				"1 week",28.96F, 34.99F, new DangerousGoodsRepository().findById(1),
+				new SupplierRepository().findById(1), new ArticleInventoryRepository().findById(2),
+				new ArticleGroupRepository().findById(1), new CustomTariffNumbersRepository().findById(1),
+				new StorageRepository().findById(4));
+
+		articleRepository.createEntity(article);
+		Assertions.assertNotNull(articleRepository.findById(article.getA_Id()));
+
+		articleRepository.deleteEntity(article);
+		Assertions.assertNull(articleRepository.findById(article.getA_Id()));
 	}
 
 }

@@ -23,8 +23,17 @@ public class CartTest {
     }
 
     @Test
+    @DisplayName("Find specific Cart Entity")
+    public void testFindCart() {
+        Cart cart = cartRepository.findById(1);
+
+        Assertions.assertNotNull(cart);
+        Assertions.assertEquals(1, cart.getCART_Id());
+    }
+
+    @Test
     @DisplayName("Create new Cart")
-    public void createCart () {
+    public void testCreateCart () {
         Cart cart = new Cart(1, new ArticleRepository().findById(2),
                 new CustomeraccountRepository().findById(1));
 
@@ -34,8 +43,8 @@ public class CartTest {
     }
 
     @Test
-    @DisplayName("Delete ArticleGroup")
-    public void deleteCartEntity () {
+    @DisplayName("Delete Cart entity")
+    public void testDeleteCartEntity () {
         Cart cart = new Cart(1, new ArticleRepository().findById(2),
                 new CustomeraccountRepository().findById(1));
 
@@ -44,5 +53,19 @@ public class CartTest {
 
         cartRepository.deleteEntity(cart);
         Assertions.assertNull(cartRepository.findById(cart.getCART_Id()));
+    }
+
+    @Test
+    @DisplayName("Change Article in Cart")
+    public void testChangeArticleInCart() {
+        Cart cart = new Cart(1, new ArticleRepository().findById(2),
+                new CustomeraccountRepository().findById(1));
+
+        cartRepository.createEntity(cart);
+        Assertions.assertEquals(2,cartRepository.findById(cart.getCART_Id()).getArticle().getA_Id());
+
+        cart.setArticle(new ArticleRepository().findById(3));
+        cartRepository.updateWithMerge(cart);
+        Assertions.assertEquals(3, cartRepository.findById(cart.getCART_Id()).getArticle().getA_Id());
     }
 }

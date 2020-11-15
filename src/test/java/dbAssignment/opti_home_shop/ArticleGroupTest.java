@@ -4,7 +4,7 @@ import org.junit.*;
 import org.junit.Test;
 import org.junit.jupiter.api.*;
 
-import java.util.List;
+import java.util.*;
 
 public class ArticleGroupTest {
 
@@ -24,7 +24,7 @@ public class ArticleGroupTest {
 
     @Test
     @DisplayName("Create new Entity")
-    public void createArticleGroupEntity() {
+    public void testCreateArticleGroupEntity() {
         ArticleGroup articleGroup = new ArticleGroup();
         articleGroup.setAG_Description("Luxusmöbel");
 
@@ -34,7 +34,7 @@ public class ArticleGroupTest {
 
     @Test
     @DisplayName("Update ArticleGroup without merge")
-    public void updateArticleGroupWithMerge() {
+    public void testUpdateArticleGroupWithMerge() {
         List<ArticleGroup> articleGroupList = articleGroupRepository.findAll();
         int a = articleGroupList.size();
         ArticleGroup articleGroup = articleGroupList.get(a-1);
@@ -48,7 +48,7 @@ public class ArticleGroupTest {
 
     @Test
     @DisplayName("Delete ArticleGroup")
-    public void deleteArticleGroupEntity () {
+    public void testDeleteArticleGroupEntity () {
 
         ArticleGroup articleGroup = new ArticleGroup();
         articleGroup.setAG_Description("Luxusmöbel");
@@ -58,5 +58,24 @@ public class ArticleGroupTest {
 
         articleGroupRepository.deleteEntity(articleGroup);
         Assertions.assertNull(articleGroupRepository.findById(articleGroup.getAG_Id()));
+    }
+
+    @Test
+    @DisplayName("Check if Article can be added to ArticleList")
+    public void testArticleGroupNewArticle() {
+        ArticleGroup articleGroup = new ArticleGroup();
+        articleGroup.setAG_Description("Bambusmöbel");
+
+        articleGroupRepository.createEntity(articleGroup);
+        Assertions.assertNotNull(articleGroupRepository.findById(articleGroup.getAG_Id()));
+        Assertions.assertNull(articleGroupRepository.findById(articleGroup.getAG_Id()).getArticles());
+
+        ArrayList<Article> articleList = new ArrayList<Article>();
+        articleList.add(new ArticleRepository().findById(1));
+        articleGroup.setArticles(articleList);
+        articleGroupRepository.updateWithMerge(articleGroup);
+
+        Assertions.assertEquals(1,articleGroupRepository.findById(articleGroup.getAG_Id()).getArticles().size());
+        Assertions.assertEquals(1, articleGroupRepository.findById(articleGroup.getAG_Id()).getArticles().get(0).getA_Id());
     }
 }

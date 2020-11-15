@@ -27,7 +27,7 @@ public class ArticleTest {
 	}
 
 	@Test
-	@DisplayName("Finding Article Entity")
+	@DisplayName("Find specific Article Entity")
 	public void testFindingArticleEntity() {
 		Article article = articleRepository.findById(1);
 
@@ -36,7 +36,7 @@ public class ArticleTest {
 	}
 
 	@Test
-	@DisplayName("Updating Article with merge")
+	@DisplayName("Update Article with merge")
 	public void testUpdateEntityWithMerge() {
 		//Create necessary repositories and establish connection
 		ArticleGroupRepository articleGroupRepository = new ArticleGroupRepository();
@@ -74,7 +74,7 @@ public class ArticleTest {
 	}
 
 	@Test
-	@DisplayName("Updating Article without merge")
+	@DisplayName("Update Article without merge")
 	public void testUpdateEntityWithoutMerge() {
 		//Create necessary repositories and establish connection
 		CustomTariffNumbersRepository customTariffNumbersRepository = new CustomTariffNumbersRepository();

@@ -27,7 +27,7 @@ public class ArticleGroupTest {
     }
 
     @Test
-    @DisplayName("Create new Entity")
+    @DisplayName("Create new ArticleGroup Entity")
     public void testCreateArticleGroupEntity() {
         ArticleGroup articleGroup = new ArticleGroup();
         articleGroup.setAG_Description("Luxusmöbel");

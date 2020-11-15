@@ -34,7 +34,7 @@ public class CartTest {
     }
 
     @Test
-    @DisplayName("Create new Cart")
+    @DisplayName("Create new Cart Entity")
     public void testCreateCart () {
         Cart cart = new Cart(1, new ArticleRepository().findById(2),
                 new CustomeraccountRepository().findById(1));
@@ -58,7 +58,7 @@ public class CartTest {
     }
 
     @Test
-    @DisplayName("Change Article in Cart")
+    @DisplayName("Change Article in Cart Entity")
     public void testChangeArticleInCart() {
         Cart cart = new Cart(1, new ArticleRepository().findById(2),
                 new CustomeraccountRepository().findById(1));
